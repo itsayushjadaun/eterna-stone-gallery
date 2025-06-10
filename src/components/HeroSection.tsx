@@ -9,10 +9,15 @@ export const HeroSection = () => {
     setIsLoaded(true);
   }, []);
 
-  const scrollToCollection = () => {
-    const element = document.getElementById('collection');
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerHeight = 80; // Account for fixed header
+      const elementPosition = element.offsetTop - headerHeight;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -24,6 +29,11 @@ export const HeroSection = () => {
           src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=2048&q=80"
           alt="Mystical mountain landscape with premium stones"
           className="w-full h-full object-cover"
+          loading="eager"
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=2048&q=80";
+          }}
         />
         <div className="absolute inset-0 bg-black/60"></div>
       </div>
@@ -37,6 +47,10 @@ export const HeroSection = () => {
             src="/lovable-uploads/93aa4666-afd3-44ff-b358-bb05a1ee65d3.png" 
             alt="Luminor Stones Logo" 
             className="h-16 sm:h-20 lg:h-24 w-auto"
+            onError={(e) => {
+              const target = e.target as HTMLImageElement;
+              target.style.display = 'none';
+            }}
           />
         </div>
         
@@ -53,7 +67,7 @@ export const HeroSection = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md sm:max-w-none mx-auto">
           <Button
-            onClick={scrollToCollection}
+            onClick={() => scrollToSection('collection')}
             size="lg"
             className="w-full sm:w-auto bg-white text-gray-900 hover:bg-gray-100 px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg font-medium transition-all duration-300 transform hover:scale-105"
           >
@@ -64,7 +78,7 @@ export const HeroSection = () => {
             variant="outline"
             size="lg"
             className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-gray-900 px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg font-medium transition-all duration-300"
-            onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => scrollToSection('about')}
           >
             About Luminor Stones
           </Button>

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -10,6 +9,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Menu, X } from "lucide-react";
+import { ThemeToggle } from "./ThemeToggle";
 
 interface HeaderProps {
   isScrolled: boolean;
@@ -68,6 +68,10 @@ export const Header = ({ isScrolled }: HeaderProps) => {
               src="/lovable-uploads/93aa4666-afd3-44ff-b358-bb05a1ee65d3.png" 
               alt="Luminor Stones Logo" 
               className="h-8 lg:h-10 w-auto"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.style.display = 'none';
+              }}
             />
             <h1 className="text-lg lg:text-2xl font-playfair font-bold text-foreground hidden sm:block">
               Luminor Stones
@@ -133,6 +137,7 @@ export const Header = ({ isScrolled }: HeaderProps) => {
           </nav>
 
           <div className="flex items-center space-x-3">
+            <ThemeToggle />
             <Button 
               onClick={() => scrollToSection('collection')}
               className="hidden lg:flex bg-primary text-primary-foreground hover:bg-primary/90 text-sm px-4 py-2"
