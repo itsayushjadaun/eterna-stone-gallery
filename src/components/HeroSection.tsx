@@ -17,7 +17,7 @@ export const HeroSection = () => {
   };
 
   return (
-    <section id="home" className="relative h-screen flex items-center justify-center overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <img
@@ -25,37 +25,37 @@ export const HeroSection = () => {
           alt="Mystical mountain landscape with premium stones"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/50"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
       {/* Content */}
-      <div className={`relative z-10 text-center text-white max-w-4xl mx-auto px-4 transition-all duration-1000 ${
+      <div className={`relative z-10 text-center text-white max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
-        <div className="flex justify-center mb-8">
+        <div className="flex justify-center mb-6 lg:mb-8">
           <img 
             src="/lovable-uploads/93aa4666-afd3-44ff-b358-bb05a1ee65d3.png" 
             alt="Luminor Stones Logo" 
-            className="h-20 w-auto"
+            className="h-16 sm:h-20 lg:h-24 w-auto"
           />
         </div>
         
-        <h1 className="text-5xl md:text-7xl font-playfair font-bold mb-6 leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold mb-4 lg:mb-6 leading-tight">
           Premium Stone Slabs
           <br />
-          <span className="text-stone-200">& Natural Gemstones</span>
+          <span className="text-stone-200 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">& Natural Gemstones</span>
         </h1>
         
-        <p className="text-xl md:text-2xl mb-8 text-stone-200 font-light max-w-2xl mx-auto">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 lg:mb-8 text-stone-200 font-light max-w-3xl mx-auto leading-relaxed">
           Discover our extensive collection of agate, quartz, mother of pearl, 
           and premium gemstone slabs for luxury applications
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-md sm:max-w-none mx-auto">
           <Button
             onClick={scrollToCollection}
             size="lg"
-            className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-3 text-lg font-medium transition-all duration-300 transform hover:scale-105"
+            className="w-full sm:w-auto bg-white text-gray-900 hover:bg-gray-100 px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg font-medium transition-all duration-300 transform hover:scale-105"
           >
             View Our Collection
           </Button>
@@ -63,7 +63,7 @@ export const HeroSection = () => {
           <Button
             variant="outline"
             size="lg"
-            className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 text-lg font-medium transition-all duration-300"
+            className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-gray-900 px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg font-medium transition-all duration-300"
             onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
           >
             About Luminor Stones
@@ -72,9 +72,9 @@ export const HeroSection = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-white rounded-full flex justify-center">
-          <div className="w-1 h-3 bg-white rounded-full mt-2 animate-pulse"></div>
+      <div className="absolute bottom-6 lg:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <div className="w-5 lg:w-6 h-8 lg:h-10 border-2 border-white rounded-full flex justify-center">
+          <div className="w-1 h-2 lg:h-3 bg-white rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>
     </section>

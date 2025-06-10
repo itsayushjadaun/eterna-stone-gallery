@@ -5,19 +5,19 @@ const testimonials = [
   {
     name: "Sarah Mitchell",
     location: "California, USA",
-    quote: "The amethyst I purchased from Eterna Stones is absolutely stunning. The quality and energy of the stone exceeded my expectations. Highly recommended!",
+    quote: "The agate slabs I purchased from Luminor Stones are absolutely stunning. The quality and craftsmanship exceeded my expectations. Highly recommended!",
     rating: 5
   },
   {
     name: "David Chen",
     location: "Singapore",
-    quote: "Amazing collection and excellent customer service. The stones arrived beautifully packaged and exactly as described. Will definitely order again!",
+    quote: "Amazing collection and excellent customer service. The stone slabs arrived beautifully packaged and exactly as described. Will definitely order again!",
     rating: 5
   },
   {
     name: "Emma Thompson",
     location: "London, UK",
-    quote: "I've been collecting crystals for years, and Eterna Stones has some of the finest quality stones I've ever seen. Their expertise really shows.",
+    quote: "I've been working with natural stones for years, and Luminor Stones has some of the finest quality slabs I've ever seen. Their expertise really shows.",
     rating: 5
   }
 ];
@@ -55,56 +55,56 @@ export const Testimonials = () => {
   return (
     <section 
       ref={sectionRef}
-      className="py-20 md:py-32 bg-background"
+      className="py-16 lg:py-24 xl:py-32 bg-background"
     >
-      <div className="container mx-auto px-4">
-        <div className={`text-center mb-16 transition-all duration-1000 ${
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+        <div className={`text-center mb-12 lg:mb-16 transition-all duration-1000 ${
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
-          <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold text-foreground mb-4 lg:mb-6">
             What Our Customers Say
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Join thousands of satisfied customers who have found their perfect stones with us.
+          <p className="text-base lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+            Join thousands of satisfied customers who have found their perfect stone slabs with us.
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto">
-          <div className="relative">
+        <div className="max-w-5xl mx-auto">
+          <div className="relative min-h-[300px] lg:min-h-[250px]">
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
                 className={`text-center transition-all duration-500 ${
                   index === currentIndex 
-                    ? 'opacity-100 transform translate-x-0' 
+                    ? 'opacity-100 transform translate-x-0 relative' 
                     : 'opacity-0 transform translate-x-8 absolute inset-0'
                 }`}
               >
-                <blockquote className="text-2xl md:text-3xl font-playfair text-foreground mb-8 leading-relaxed">
+                <blockquote className="text-xl sm:text-2xl lg:text-3xl font-playfair text-foreground mb-6 lg:mb-8 leading-relaxed px-4">
                   "{testimonial.quote}"
                 </blockquote>
                 
-                <div className="flex justify-center mb-4">
+                <div className="flex justify-center mb-3 lg:mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <span key={i} className="text-yellow-400 text-xl">★</span>
+                    <span key={i} className="text-yellow-400 text-lg lg:text-xl">★</span>
                   ))}
                 </div>
                 
                 <div className="text-muted-foreground">
-                  <p className="font-semibold text-foreground text-lg">{testimonial.name}</p>
-                  <p>{testimonial.location}</p>
+                  <p className="font-semibold text-foreground text-base lg:text-lg">{testimonial.name}</p>
+                  <p className="text-sm lg:text-base">{testimonial.location}</p>
                 </div>
               </div>
             ))}
           </div>
 
           {/* Dots Indicator */}
-          <div className="flex justify-center mt-8 space-x-2">
+          <div className="flex justify-center mt-6 lg:mt-8 space-x-2 lg:space-x-3">
             {testimonials.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                className={`w-3 h-3 lg:w-4 lg:h-4 rounded-full transition-all duration-300 ${
                   index === currentIndex 
                     ? 'bg-primary scale-125' 
                     : 'bg-muted hover:bg-primary/50'
