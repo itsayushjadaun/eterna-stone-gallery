@@ -22,25 +22,33 @@ export const HeroSection = () => {
       <div className="absolute inset-0 z-0">
         <img
           src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=2048&q=80"
-          alt="Mystical mountain landscape"
+          alt="Mystical mountain landscape with premium stones"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-black/50"></div>
       </div>
 
       {/* Content */}
       <div className={`relative z-10 text-center text-white max-w-4xl mx-auto px-4 transition-all duration-1000 ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
+        <div className="flex justify-center mb-8">
+          <img 
+            src="/lovable-uploads/93aa4666-afd3-44ff-b358-bb05a1ee65d3.png" 
+            alt="Luminor Stones Logo" 
+            className="h-20 w-auto"
+          />
+        </div>
+        
         <h1 className="text-5xl md:text-7xl font-playfair font-bold mb-6 leading-tight">
-          Nature's Finest,
+          Premium Stone Slabs
           <br />
-          <span className="text-stone-200">Crafted in Stone</span>
+          <span className="text-stone-200">& Natural Gemstones</span>
         </h1>
         
         <p className="text-xl md:text-2xl mb-8 text-stone-200 font-light max-w-2xl mx-auto">
-          Explore our curated collection of semi-precious stones and crystals, 
-          each piece telling its own ancient story
+          Discover our extensive collection of agate, quartz, mother of pearl, 
+          and premium gemstone slabs for luxury applications
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -49,7 +57,7 @@ export const HeroSection = () => {
             size="lg"
             className="bg-white text-gray-900 hover:bg-gray-100 px-8 py-3 text-lg font-medium transition-all duration-300 transform hover:scale-105"
           >
-            Explore Collection
+            View Our Collection
           </Button>
           
           <Button
@@ -58,7 +66,7 @@ export const HeroSection = () => {
             className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-3 text-lg font-medium transition-all duration-300"
             onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
           >
-            Our Story
+            About Luminor Stones
           </Button>
         </div>
       </div>

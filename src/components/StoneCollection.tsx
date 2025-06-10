@@ -12,7 +12,13 @@ export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
   const [filter, setFilter] = useState("All");
   const sectionRef = useRef(null);
 
-  const categories = ["All", "Healing Crystals", "Prosperity Stones", "Mystical Stones", "Love Stones", "Protection Stones", "Master Healers"];
+  const categories = [
+    "All", 
+    "Agate Stone Slabs", 
+    "Quartz Stone Slabs", 
+    "Mother of Pearl (MOP)", 
+    "Gemstone Slabs"
+  ];
 
   const filteredStones = filter === "All" ? stones : stones.filter(stone => stone.category === filter);
 
@@ -44,11 +50,12 @@ export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-            Our Stone Collection
+            Premium Stone Collection
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-            Discover the perfect stone for your journey. Each piece has been carefully 
-            selected for its beauty, energy, and transformative properties.
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            Explore our comprehensive selection of premium natural stone slabs, 
+            from vibrant agate varieties to sophisticated mother of pearl finishes. 
+            Each piece is carefully selected for exceptional quality and beauty.
           </p>
 
           {/* Filter Buttons */}
@@ -58,7 +65,7 @@ export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
                 key={category}
                 variant={filter === category ? "default" : "outline"}
                 onClick={() => setFilter(category)}
-                className="mb-2"
+                className="mb-2 text-sm"
               >
                 {category}
               </Button>
@@ -67,7 +74,7 @@ export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
         </div>
 
         {/* Stone Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredStones.map((stone, index) => (
             <div
               key={stone.id}
@@ -77,33 +84,34 @@ export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
               style={{ transitionDelay: `${index * 100}ms` }}
               onClick={() => onStoneSelect(stone)}
             >
-              <div className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2">
+              <div className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 transform group-hover:-translate-y-2 group-hover:scale-105">
                 <div className="relative overflow-hidden">
                   <img
                     src={stone.image}
                     alt={stone.name}
-                    className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
+                    className="w-full h-48 object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                    <p className="text-sm font-medium">Click to explore</p>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute bottom-3 left-3 right-3 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <p className="text-sm font-medium">Click for details</p>
+                    <p className="text-xs text-gray-200">{stone.category}</p>
                   </div>
                 </div>
                 
-                <div className="p-6">
-                  <h3 className="text-xl font-playfair font-semibold text-foreground mb-2">
+                <div className="p-4">
+                  <h3 className="text-lg font-playfair font-semibold text-foreground mb-2 line-clamp-1">
                     {stone.name}
                   </h3>
-                  <p className="text-muted-foreground mb-4 line-clamp-2">
+                  <p className="text-muted-foreground text-sm mb-3 line-clamp-2">
                     {stone.description}
                   </p>
                   <div className="flex justify-between items-center">
-                    <span className="text-lg font-semibold text-primary">
+                    <span className="text-sm font-semibold text-primary">
                       {stone.price}
                     </span>
                     <Button 
                       size="sm" 
-                      className="bg-primary text-primary-foreground hover:bg-primary/90"
+                      className="bg-primary text-primary-foreground hover:bg-primary/90 text-xs px-3 py-1"
                     >
                       View Details
                     </Button>
@@ -113,6 +121,12 @@ export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
             </div>
           ))}
         </div>
+
+        {filteredStones.length === 0 && (
+          <div className="text-center py-12">
+            <p className="text-muted-foreground text-lg">No stones found in this category.</p>
+          </div>
+        )}
       </div>
     </section>
   );

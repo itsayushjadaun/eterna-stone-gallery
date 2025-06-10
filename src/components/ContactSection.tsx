@@ -39,7 +39,7 @@ export const ContactSection = () => {
     
     toast({
       title: "Message Sent!",
-      description: "Thank you for your inquiry. We'll get back to you soon.",
+      description: "Thank you for your inquiry. We'll get back to you soon with stone specifications and pricing.",
     });
 
     setFormData({ name: '', email: '', phone: '', message: '' });
@@ -63,11 +63,11 @@ export const ContactSection = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-            Get in Touch
+            Contact Luminor Stones
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Have questions about our stones or need a custom selection? 
-            We'd love to help you find the perfect crystal for your journey.
+            Ready to transform your space with premium natural stone? 
+            Contact us for custom specifications, pricing, and project consultation.
           </p>
         </div>
 
@@ -78,14 +78,14 @@ export const ContactSection = () => {
           }`}>
             <div className="bg-card rounded-lg p-8 shadow-lg">
               <h3 className="text-2xl font-playfair font-semibold text-foreground mb-6">
-                Send us a Message
+                Request Quote & Information
               </h3>
               
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                   <div>
                     <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
-                      Full Name
+                      Full Name *
                     </label>
                     <Input
                       id="name"
@@ -99,7 +99,7 @@ export const ContactSection = () => {
                   </div>
                   <div>
                     <label htmlFor="email" className="block text-sm font-medium text-foreground mb-2">
-                      Email
+                      Email Address *
                     </label>
                     <Input
                       id="email"
@@ -115,7 +115,7 @@ export const ContactSection = () => {
 
                 <div>
                   <label htmlFor="phone" className="block text-sm font-medium text-foreground mb-2">
-                    Phone (Optional)
+                    Phone Number
                   </label>
                   <Input
                     id="phone"
@@ -129,7 +129,7 @@ export const ContactSection = () => {
 
                 <div>
                   <label htmlFor="message" className="block text-sm font-medium text-foreground mb-2">
-                    Message
+                    Project Details & Requirements *
                   </label>
                   <Textarea
                     id="message"
@@ -138,7 +138,7 @@ export const ContactSection = () => {
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    placeholder="Tell us about your stone needs or ask any questions..."
+                    placeholder="Please describe your project, stone preferences, dimensions needed, and any specific requirements..."
                   />
                 </div>
 
@@ -147,7 +147,7 @@ export const ContactSection = () => {
                   size="lg" 
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
                 >
-                  Send Message
+                  Request Quote
                 </Button>
               </form>
             </div>
@@ -160,50 +160,50 @@ export const ContactSection = () => {
             <div className="space-y-8">
               <div>
                 <h3 className="text-2xl font-playfair font-semibold text-foreground mb-6">
-                  Visit Our Store
+                  Get in Touch
                 </h3>
-                <div className="space-y-4">
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Address</h4>
+                <div className="space-y-6">
+                  <div className="bg-card rounded-lg p-6 shadow-lg">
+                    <h4 className="font-semibold text-foreground mb-3">Business Address</h4>
                     <p className="text-muted-foreground">
-                      123 Crystal Avenue<br />
-                      Mystic Valley, MV 12345<br />
+                      Luminor Stones Showroom<br />
+                      Premium Stone District<br />
+                      Stone Valley, SV 12345<br />
                       United States
                     </p>
                   </div>
                   
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Phone</h4>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                  <div className="bg-card rounded-lg p-6 shadow-lg">
+                    <h4 className="font-semibold text-foreground mb-3">Contact Details</h4>
+                    <div className="space-y-2 text-muted-foreground">
+                      <p><strong>Phone:</strong> +1 (555) 123-STONE</p>
+                      <p><strong>Email:</strong> info@luminorstones.com</p>
+                      <p><strong>WhatsApp:</strong> +1 (555) 123-4567</p>
+                    </div>
                   </div>
                   
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Email</h4>
-                    <p className="text-muted-foreground">info@eternastones.com</p>
-                  </div>
-                  
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Store Hours</h4>
+                  <div className="bg-card rounded-lg p-6 shadow-lg">
+                    <h4 className="font-semibold text-foreground mb-3">Showroom Hours</h4>
                     <div className="text-muted-foreground space-y-1">
-                      <p>Monday - Friday: 9:00 AM - 7:00 PM</p>
-                      <p>Saturday: 10:00 AM - 6:00 PM</p>
-                      <p>Sunday: 12:00 PM - 5:00 PM</p>
+                      <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                      <p>Saturday: 9:00 AM - 5:00 PM</p>
+                      <p>Sunday: By Appointment Only</p>
                     </div>
                   </div>
                 </div>
               </div>
 
               <div className="bg-card rounded-lg p-6 shadow-lg">
-                <h4 className="font-semibold text-foreground mb-4">Follow Us</h4>
+                <h4 className="font-semibold text-foreground mb-4">Connect With Us</h4>
                 <div className="flex space-x-4">
                   <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
                     Instagram
                   </a>
                   <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    Facebook
+                    LinkedIn
                   </a>
                   <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    Pinterest
+                    Facebook
                   </a>
                 </div>
               </div>

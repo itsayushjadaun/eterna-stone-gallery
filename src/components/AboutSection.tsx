@@ -34,33 +34,37 @@ export const AboutSection = () => {
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
           }`}>
             <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-              Ancient Wisdom,
+              Luminor Stones,
               <br />
-              <span className="text-muted-foreground">Modern Beauty</span>
+              <span className="text-muted-foreground">Excellence in Natural Stone</span>
             </h2>
             
             <p className="text-lg text-muted-foreground mb-6 leading-relaxed">
-              For over two decades, Eterna Stones has been at the forefront of sourcing 
-              and curating the world's most exquisite semi-precious stones. Our journey 
-              began with a simple passion: to bring the earth's natural artistry into 
-              your hands.
+              Luminor Stones specializes in premium natural stone slabs, featuring an 
+              extensive collection of agate, quartz, mother of pearl, and exotic gemstones. 
+              Our carefully curated selection meets the highest standards for luxury 
+              architectural and decorative applications.
             </p>
             
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Each stone in our collection is hand-selected for its unique character, 
-              exceptional quality, and inherent beauty. We believe that every crystal 
-              carries within it millions of years of natural history, waiting to become 
-              part of your story.
+              From vibrant agate varieties to sophisticated mother of pearl finishes, 
+              each slab tells a unique story of natural formation. We serve architects, 
+              designers, and homeowners seeking exceptional stone surfaces for their 
+              most prestigious projects.
             </p>
 
-            <div className="grid grid-cols-2 gap-6">
+            <div className="grid grid-cols-3 gap-6">
               <div className="text-center">
-                <div className="text-3xl font-playfair font-bold text-primary mb-2">20+</div>
-                <div className="text-muted-foreground">Years Experience</div>
+                <div className="text-3xl font-playfair font-bold text-primary mb-2">100+</div>
+                <div className="text-muted-foreground text-sm">Stone Varieties</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-playfair font-bold text-primary mb-2">15+</div>
+                <div className="text-muted-foreground text-sm">Years Experience</div>
               </div>
               <div className="text-center">
                 <div className="text-3xl font-playfair font-bold text-primary mb-2">500+</div>
-                <div className="text-muted-foreground">Unique Stones</div>
+                <div className="text-muted-foreground text-sm">Projects Completed</div>
               </div>
             </div>
           </div>
@@ -71,7 +75,7 @@ export const AboutSection = () => {
             <div className="relative">
               <img
                 src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=800&q=80"
-                alt="Natural crystal formation"
+                alt="Premium natural stone formations"
                 className="w-full rounded-lg shadow-2xl"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
