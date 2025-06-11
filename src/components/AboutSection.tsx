@@ -33,11 +33,16 @@ export const AboutSection = () => {
           <div className={`transition-all duration-1000 ${
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
           }`}>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold text-foreground mb-4 lg:mb-6 leading-tight">
-              Luminor Stones,
-              <br />
-              <span className="text-muted-foreground text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">Excellence in Natural Stone</span>
-            </h2>
+            {/* Updated headline with better contrast */}
+            <div className="bg-foreground/5 dark:bg-background/50 backdrop-blur-sm rounded-lg p-6 lg:p-8 mb-6 border border-border/20">
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold text-foreground mb-4 lg:mb-6 leading-tight">
+                About Luminor Stones
+              </h2>
+              <div className="h-1 w-24 bg-primary rounded-full mb-4"></div>
+              <p className="text-lg lg:text-xl text-muted-foreground font-medium">
+                Excellence in Natural Stone
+              </p>
+            </div>
             
             <p className="text-base lg:text-lg text-muted-foreground mb-4 lg:mb-6 leading-relaxed">
               Luminor Stones specializes in premium natural stone slabs, featuring an 
@@ -54,15 +59,15 @@ export const AboutSection = () => {
             </p>
 
             <div className="grid grid-cols-3 gap-4 lg:gap-6">
-              <div className="text-center">
+              <div className="text-center bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border/20">
                 <div className="text-2xl lg:text-3xl font-playfair font-bold text-primary mb-1 lg:mb-2">100+</div>
                 <div className="text-muted-foreground text-xs lg:text-sm">Stone Varieties</div>
               </div>
-              <div className="text-center">
+              <div className="text-center bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border/20">
                 <div className="text-2xl lg:text-3xl font-playfair font-bold text-primary mb-1 lg:mb-2">15+</div>
                 <div className="text-muted-foreground text-xs lg:text-sm">Years Experience</div>
               </div>
-              <div className="text-center">
+              <div className="text-center bg-card/50 backdrop-blur-sm rounded-lg p-4 border border-border/20">
                 <div className="text-2xl lg:text-3xl font-playfair font-bold text-primary mb-1 lg:mb-2">500+</div>
                 <div className="text-muted-foreground text-xs lg:text-sm">Projects Completed</div>
               </div>

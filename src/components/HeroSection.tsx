@@ -12,7 +12,7 @@ export const HeroSection = () => {
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      const headerHeight = 80; // Account for fixed header
+      const headerHeight = 80;
       const elementPosition = element.offsetTop - headerHeight;
       window.scrollTo({
         top: elementPosition,
@@ -46,7 +46,7 @@ export const HeroSection = () => {
           <img 
             src="/lovable-uploads/93aa4666-afd3-44ff-b358-bb05a1ee65d3.png" 
             alt="Luminor Stones Logo" 
-            className="h-16 sm:h-20 lg:h-24 w-auto"
+            className="h-16 sm:h-20 lg:h-24 w-auto drop-shadow-2xl"
             onError={(e) => {
               const target = e.target as HTMLImageElement;
               target.style.display = 'none';
@@ -54,13 +54,13 @@ export const HeroSection = () => {
           />
         </div>
         
-        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold mb-4 lg:mb-6 leading-tight">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold mb-4 lg:mb-6 leading-tight text-white drop-shadow-2xl [text-shadow:_2px_2px_4px_rgb(0_0_0_/_80%)]">
           Premium Stone Slabs
           <br />
-          <span className="text-stone-200 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">& Natural Gemstones</span>
+          <span className="text-stone-200 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl drop-shadow-2xl [text-shadow:_2px_2px_4px_rgb(0_0_0_/_80%)]">& Natural Gemstones</span>
         </h1>
         
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 lg:mb-8 text-stone-200 font-light max-w-3xl mx-auto leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 lg:mb-8 text-stone-200 font-light max-w-3xl mx-auto leading-relaxed drop-shadow-lg [text-shadow:_1px_1px_2px_rgb(0_0_0_/_70%)]">
           Discover our extensive collection of agate, quartz, mother of pearl, 
           and premium gemstone slabs for luxury applications
         </p>
@@ -69,7 +69,7 @@ export const HeroSection = () => {
           <Button
             onClick={() => scrollToSection('collection')}
             size="lg"
-            className="w-full sm:w-auto bg-white text-gray-900 hover:bg-gray-100 px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg font-medium transition-all duration-300 transform hover:scale-105"
+            className="w-full sm:w-auto bg-white text-gray-900 hover:bg-gray-100 px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg font-medium transition-all duration-300 transform hover:scale-105 shadow-2xl"
           >
             View Our Collection
           </Button>
@@ -77,7 +77,7 @@ export const HeroSection = () => {
           <Button
             variant="outline"
             size="lg"
-            className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-gray-900 px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg font-medium transition-all duration-300"
+            className="w-full sm:w-auto border-2 border-white text-white hover:bg-white hover:text-gray-900 px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg font-medium transition-all duration-300 shadow-2xl backdrop-blur-sm"
             onClick={() => scrollToSection('about')}
           >
             About Luminor Stones
@@ -87,7 +87,7 @@ export const HeroSection = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-6 lg:bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <div className="w-5 lg:w-6 h-8 lg:h-10 border-2 border-white rounded-full flex justify-center">
+        <div className="w-5 lg:w-6 h-8 lg:h-10 border-2 border-white rounded-full flex justify-center drop-shadow-lg">
           <div className="w-1 h-2 lg:h-3 bg-white rounded-full mt-2 animate-pulse"></div>
         </div>
       </div>

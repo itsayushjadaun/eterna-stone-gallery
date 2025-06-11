@@ -58,7 +58,7 @@ export const Header = ({ isScrolled }: HeaderProps) => {
       "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
       isScrolled 
         ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" 
-        : "bg-transparent"
+        : "bg-black/60 backdrop-blur-md"
     )}>
       <div className="container mx-auto px-4 lg:px-6">
         <div className="flex items-center justify-between h-16 lg:h-20">
@@ -67,13 +67,16 @@ export const Header = ({ isScrolled }: HeaderProps) => {
             <img 
               src="/lovable-uploads/93aa4666-afd3-44ff-b358-bb05a1ee65d3.png" 
               alt="Luminor Stones Logo" 
-              className="h-8 lg:h-10 w-auto"
+              className="h-8 lg:h-10 w-auto drop-shadow-lg"
               onError={(e) => {
                 const target = e.target as HTMLImageElement;
                 target.style.display = 'none';
               }}
             />
-            <h1 className="text-lg lg:text-2xl font-playfair font-bold text-foreground hidden sm:block">
+            <h1 className={cn(
+              "text-lg lg:text-2xl font-playfair font-bold hidden sm:block drop-shadow-lg",
+              isScrolled ? "text-foreground" : "text-white [text-shadow:_1px_1px_2px_rgb(0_0_0_/_80%)]"
+            )}>
               Luminor Stones
             </h1>
           </div>
@@ -82,13 +85,23 @@ export const Header = ({ isScrolled }: HeaderProps) => {
           <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             <button
               onClick={() => scrollToSection('home')}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              className={cn(
+                "text-sm font-medium transition-colors drop-shadow-sm",
+                isScrolled 
+                  ? "text-foreground hover:text-primary" 
+                  : "text-white hover:text-stone-300 [text-shadow:_1px_1px_2px_rgb(0_0_0_/_80%)]"
+              )}
             >
               Home
             </button>
             <button
               onClick={() => scrollToSection('about')}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              className={cn(
+                "text-sm font-medium transition-colors drop-shadow-sm",
+                isScrolled 
+                  ? "text-foreground hover:text-primary" 
+                  : "text-white hover:text-stone-300 [text-shadow:_1px_1px_2px_rgb(0_0_0_/_80%)]"
+              )}
             >
               About Us
             </button>
@@ -96,11 +109,16 @@ export const Header = ({ isScrolled }: HeaderProps) => {
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm font-medium text-foreground hover:text-primary bg-transparent data-[state=open]:bg-accent">
+                  <NavigationMenuTrigger className={cn(
+                    "text-sm font-medium transition-colors bg-transparent data-[state=open]:bg-accent drop-shadow-sm",
+                    isScrolled 
+                      ? "text-foreground hover:text-primary" 
+                      : "text-white hover:text-stone-300 [text-shadow:_1px_1px_2px_rgb(0_0_0_/_80%)]"
+                  )}>
                     Products
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid w-[600px] xl:w-[800px] gap-4 p-6 lg:grid-cols-2">
+                    <div className="grid w-[600px] xl:w-[800px] gap-4 p-6 lg:grid-cols-2 bg-background/95 backdrop-blur-md">
                       {productCategories.map((category) => (
                         <div key={category.title} className="space-y-2">
                           <h4 className="text-sm font-semibold text-foreground">{category.title}</h4>
@@ -130,17 +148,27 @@ export const Header = ({ isScrolled }: HeaderProps) => {
 
             <button
               onClick={() => scrollToSection('contact')}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              className={cn(
+                "text-sm font-medium transition-colors drop-shadow-sm",
+                isScrolled 
+                  ? "text-foreground hover:text-primary" 
+                  : "text-white hover:text-stone-300 [text-shadow:_1px_1px_2px_rgb(0_0_0_/_80%)]"
+              )}
             >
               Contact Us
             </button>
           </nav>
 
           <div className="flex items-center space-x-3">
-            <ThemeToggle />
+            <ThemeToggle isScrolled={isScrolled} />
             <Button 
               onClick={() => scrollToSection('collection')}
-              className="hidden lg:flex bg-primary text-primary-foreground hover:bg-primary/90 text-sm px-4 py-2"
+              className={cn(
+                "hidden lg:flex text-sm px-4 py-2 shadow-lg",
+                isScrolled 
+                  ? "bg-primary text-primary-foreground hover:bg-primary/90" 
+                  : "bg-white text-gray-900 hover:bg-gray-100"
+              )}
             >
               View Products
             </Button>
@@ -148,7 +176,12 @@ export const Header = ({ isScrolled }: HeaderProps) => {
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
+              className={cn(
+                "lg:hidden p-2 transition-colors drop-shadow-sm",
+                isScrolled 
+                  ? "text-foreground hover:text-primary" 
+                  : "text-white hover:text-stone-300"
+              )}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
