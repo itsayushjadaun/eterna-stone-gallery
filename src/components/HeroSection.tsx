@@ -42,7 +42,7 @@ export const HeroSection = () => {
             videoElement.parentNode?.replaceChild(fallbackImg, videoElement);
           }}
         >
-          <source src="/lovable-uploads/gerovideo.mp4" type="video/mp4" />
+          <source src="/lovable-uploads/5607650-uhd_3840_2160_24fps (1).mp4" type="video/mp4" />
           {/* Fallback image for browsers that don't support video */}
           <img
             src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=2048&q=80"
