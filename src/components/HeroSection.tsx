@@ -25,18 +25,33 @@ export const HeroSection = () => {
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background GIF */}
+      {/* Background Video */}
       <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=2048&q=80"
-          alt="Light stone texture background"
-          className="w-full h-full object-cover opacity-90"
-          loading="eager"
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="w-full h-full object-cover"
           onError={(e) => {
-            const target = e.target as HTMLImageElement;
-            target.src = "https://images.unsplash.com/photo-1578916171728-46686eac8d58?auto=format&fit=crop&w=2048&q=80";
+            // Fallback to image if video fails to load
+            const videoElement = e.target as HTMLVideoElement;
+            const fallbackImg = document.createElement('img');
+            fallbackImg.src = "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=2048&q=80";
+            fallbackImg.alt = "Light stone texture background";
+            fallbackImg.className = "w-full h-full object-cover opacity-90";
+            videoElement.parentNode?.replaceChild(fallbackImg, videoElement);
           }}
-        />
+        >
+          <source src="https://cdn.pixabay.com/video/2020/06/15/41840-430049516_large.mp4" type="video/mp4" />
+          <source src="https://cdn.pixabay.com/video/2019/07/29/25094-354204890_large.mp4" type="video/mp4" />
+          {/* Fallback image for browsers that don't support video */}
+          <img
+            src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=2048&q=80"
+            alt="Light stone texture background"
+            className="w-full h-full object-cover opacity-90"
+          />
+        </video>
         <div className="absolute inset-0 bg-white/40 dark:bg-black/60"></div>
       </div>
 
