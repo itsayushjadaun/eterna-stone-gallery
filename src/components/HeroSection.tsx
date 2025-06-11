@@ -38,7 +38,7 @@ export const HeroSection = () => {
             const fallbackImg = document.createElement('img');
             fallbackImg.src = "https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=2048&q=80";
             fallbackImg.alt = "Light stone texture background";
-            fallbackImg.className = "w-full h-full object-cover opacity-90";
+            fallbackImg.className = "w-full h-full object-cover opacity-10";
             videoElement.parentNode?.replaceChild(fallbackImg, videoElement);
           }}
         >
@@ -50,7 +50,7 @@ export const HeroSection = () => {
             className="w-full h-full object-cover opacity-90"
           />
         </video>
-        <div className="absolute inset-0 bg-white/40 dark:bg-black/60"></div>
+        <div className="absolute inset-0 bg-white/10 dark:bg-black/60"></div>
       </div>
 
       {/* Content */}
