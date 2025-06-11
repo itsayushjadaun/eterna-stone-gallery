@@ -1,4 +1,3 @@
-
 import { Button } from "@/components/ui/button";
 import { useEffect, useState } from "react";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -43,8 +42,7 @@ export const HeroSection = () => {
             videoElement.parentNode?.replaceChild(fallbackImg, videoElement);
           }}
         >
-          <source src="https://cdn.pixabay.com/video/2020/06/15/41840-430049516_large.mp4" type="video/mp4" />
-          <source src="https://cdn.pixabay.com/video/2019/07/29/25094-354204890_large.mp4" type="video/mp4" />
+          <source src="/lovable-uploads/gerovideo.mp4" type="video/mp4" />
           {/* Fallback image for browsers that don't support video */}
           <img
             src="https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=2048&q=80"
