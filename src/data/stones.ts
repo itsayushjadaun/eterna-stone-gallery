@@ -257,7 +257,7 @@ export const stones = [
   },
   // Golden Mother of Pearl
   {
-    id: "golden-mop",
+    id: "3.1",
     name: "Golden Mother of Pearl",
     description: "Lustrous golden MOP with iridescent shimmer and natural patterns.",
     detailedDescription: "Premium golden mother of pearl featuring exceptional luster and natural iridescence.",
@@ -269,7 +269,7 @@ export const stones = [
   },
   // White Mother of Pearl
   {
-    id: "white-mop",
+    id: "3.3",
     name: "White Mother of Pearl",
     description: "Classic white MOP with pearl-like luminescence and elegance.",
     detailedDescription: "Timeless white mother of pearl showcasing classic pearl luminescence with subtle color variations.",
