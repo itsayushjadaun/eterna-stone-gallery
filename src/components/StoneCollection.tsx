@@ -17,7 +17,8 @@ export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
     "Agate Stone Slabs", 
     "Quartz Stone Slabs", 
     "Mother of Pearl (MOP)", 
-    "Gemstone Slabs"
+    "Gemstone Slabs",
+    "Non-Stone Items"
   ];
 
   const filteredStones = filter === "All" ? stones : stones.filter(stone => stone.category === filter);
