@@ -364,3 +364,5 @@ export const stones = [
     category: "Gemstone Slabs"
   }
 ];
+// Remove unused images from public/Images folders
+// (This is a code file, so actual file deletion must be done manually or via a script outside of this file)
