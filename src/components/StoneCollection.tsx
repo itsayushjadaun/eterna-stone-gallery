@@ -90,6 +90,11 @@ export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
                     src={stone.image}
                     alt={stone.name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    onError={(e) => {
+                      // Fallback to a placeholder if image fails to load
+                      const target = e.target as HTMLImageElement;
+                      target.src = `https://images.unsplash.com/photo-1578662996442-48f60103fc96?auto=format&fit=crop&w=400&h=400&q=80`;
+                    }}
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-3 left-3 right-3 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
