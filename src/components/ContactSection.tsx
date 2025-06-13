@@ -4,9 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import { sendEmail } from "@/services/emailService";
 
 export const ContactSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,16 +35,37 @@ export const ContactSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    setIsLoading(true);
     
-    toast({
-      title: "Message Sent!",
-      description: "Thank you for your inquiry. We'll get back to you soon with stone specifications and pricing.",
-    });
+    try {
+      const success = await sendEmail({
+        name: formData.name,
+        email: formData.email,
+        phone: formData.phone,
+        message: formData.message,
+        type: 'contact'
+      });
 
-    setFormData({ name: '', email: '', phone: '', message: '' });
+      if (success) {
+        toast({
+          title: "Message Sent!",
+          description: "Thank you for your inquiry. We'll get back to you soon with stone specifications and pricing.",
+        });
+        setFormData({ name: '', email: '', phone: '', message: '' });
+      } else {
+        throw new Error('Failed to send email');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again or contact us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -95,6 +118,7 @@ export const ContactSection = () => {
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Your name"
+                      disabled={isLoading}
                     />
                   </div>
                   <div>
@@ -109,6 +133,7 @@ export const ContactSection = () => {
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="your@email.com"
+                      disabled={isLoading}
                     />
                   </div>
                 </div>
@@ -124,6 +149,7 @@ export const ContactSection = () => {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="Your phone number"
+                    disabled={isLoading}
                   />
                 </div>
 
@@ -139,6 +165,7 @@ export const ContactSection = () => {
                     value={formData.message}
                     onChange={handleChange}
                     placeholder="Please describe your project, stone preferences, dimensions needed, and any specific requirements..."
+                    disabled={isLoading}
                   />
                 </div>
 
@@ -146,8 +173,9 @@ export const ContactSection = () => {
                   type="submit" 
                   size="lg" 
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
+                  disabled={isLoading}
                 >
-                  Request Quote
+                  {isLoading ? "Sending..." : "Request Quote"}
                 </Button>
               </form>
             </div>

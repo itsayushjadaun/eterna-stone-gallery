@@ -1,8 +1,10 @@
-
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { X } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { sendEmail } from "@/services/emailService";
 
 interface Stone {
   id: string;
@@ -24,6 +26,39 @@ interface StoneModalProps {
 }
 
 export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
+  const [isLoading, setIsLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleRequestQuote = async () => {
+    setIsLoading(true);
+    
+    try {
+      const success = await sendEmail({
+        name: 'Website Visitor',
+        email: 'visitor@website.com',
+        message: `Quote request for: ${stone.name}\n\nCategory: ${stone.category}\nPrice Range: ${stone.price}\n\nDescription: ${stone.description}\n\nCustomer is interested in getting a detailed quote for this stone.`,
+        type: 'quote'
+      });
+
+      if (success) {
+        toast({
+          title: "Quote Request Sent!",
+          description: "Your quote request has been sent. We'll get back to you soon with detailed pricing and availability.",
+        });
+      } else {
+        throw new Error('Failed to send quote request');
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Failed to send quote request. Please try contacting us directly.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <Dialog open={!!stone} onOpenChange={onClose}>
       <DialogContent className="max-w-6xl max-h-[90vh] overflow-y-auto p-0">
@@ -110,13 +145,22 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
                   <Button 
                     size="lg" 
                     className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-sm lg:text-base"
+                    onClick={handleRequestQuote}
+                    disabled={isLoading}
                   >
-                    Request Quote
+                    {isLoading ? "Sending..." : "Request Quote"}
                   </Button>
                   <Button 
                     variant="outline" 
                     size="lg" 
                     className="w-full text-sm lg:text-base"
+                    onClick={() => {
+                      const element = document.getElementById('contact');
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                        onClose();
+                      }
+                    }}
                   >
                     Contact for Custom Order
                   </Button>

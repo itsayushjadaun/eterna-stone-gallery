@@ -15,6 +15,8 @@ interface HeaderProps {
   isScrolled: boolean;
 }
 
+
+
 export const Header = ({ isScrolled }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
