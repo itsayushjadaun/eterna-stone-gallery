@@ -1,4 +1,3 @@
-
 import emailjs from '@emailjs/browser';
 
 // EmailJS configuration - Replace these with your actual values from EmailJS dashboard
@@ -6,9 +5,9 @@ import emailjs from '@emailjs/browser';
 // 1. SERVICE_ID: Found in Email Services section
 // 2. TEMPLATE_ID: Found in Email Templates section  
 // 3. PUBLIC_KEY: Found in Account section under API Keys
-const SERVICE_ID = 'YOUR_SERVICE_ID'; // Replace with your EmailJS service ID
-const TEMPLATE_ID = 'YOUR_TEMPLATE_ID'; // Replace with your EmailJS template ID
-const PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // Replace with your EmailJS public key
+const SERVICE_ID = 'service_a3x3vzp'; // Replace with your EmailJS service ID
+const TEMPLATE_ID = 'template_fbfusf9'; // Replace with your EmailJS template ID
+const PUBLIC_KEY = 'TG1uWoPtKntn3uqOD'; // Replace with your EmailJS public key
 
 // Initialize EmailJS
 emailjs.init(PUBLIC_KEY);
