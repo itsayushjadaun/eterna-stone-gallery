@@ -4,7 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { Badge } from "@/components/ui/badge";
 import { X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
-import { sendEmail } from "@/services/emailService";
+import { sendWhatsAppMessage } from "@/services/whatsappService";
 
 interface Stone {
   id: string;
@@ -33,25 +33,28 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
     setIsLoading(true);
     
     try {
-      const success = await sendEmail({
+      const success = sendWhatsAppMessage({
         name: 'Website Visitor',
         email: 'visitor@website.com',
-        message: `Quote request for: ${stone.name}\n\nCategory: ${stone.category}\nPrice Range: ${stone.price}\n\nDescription: ${stone.description}\n\nCustomer is interested in getting a detailed quote for this stone.`,
-        type: 'quote'
+        message: `I am interested in getting a detailed quote for this stone. Please provide pricing and availability information.`,
+        type: 'quote',
+        stoneName: stone.name,
+        stoneCategory: stone.category,
+        stonePrice: stone.price
       });
 
       if (success) {
         toast({
-          title: "Quote Request Sent!",
-          description: "Your quote request has been sent. We'll get back to you soon with detailed pricing and availability.",
+          title: "WhatsApp Opened!",
+          description: "WhatsApp has been opened with your quote request. Please send the message to complete your request.",
         });
       } else {
-        throw new Error('Failed to send quote request');
+        throw new Error('Failed to open WhatsApp');
       }
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to send quote request. Please try contacting us directly.",
+        description: "Failed to open WhatsApp. Please try contacting us directly.",
         variant: "destructive",
       });
     } finally {
@@ -144,11 +147,11 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
                 <div className="space-y-3 pt-4">
                   <Button 
                     size="lg" 
-                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 text-sm lg:text-base"
+                    className="w-full bg-green-600 text-white hover:bg-green-700 text-sm lg:text-base"
                     onClick={handleRequestQuote}
                     disabled={isLoading}
                   >
-                    {isLoading ? "Sending..." : "Request Quote"}
+                    {isLoading ? "Opening WhatsApp..." : "Request Quote via WhatsApp"}
                   </Button>
                   <Button 
                     variant="outline" 
