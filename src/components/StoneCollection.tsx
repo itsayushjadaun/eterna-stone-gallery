@@ -1,14 +1,18 @@
+
 import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { stones } from "@/data/stones";
 
 interface StoneCollectionProps {
   onStoneSelect: (stone: any) => void;
+  initialCategory?: string;
+  onFilterChange?: (category: string) => void;
 }
 
-export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
+export const StoneCollection = ({ onStoneSelect, initialCategory, onFilterChange }: StoneCollectionProps) => {
   const [isVisible, setIsVisible] = useState(false);
-  const [filter, setFilter] = useState("All");
+  const [filter, setFilter] = useState(initialCategory || "All");
+  const [showMore, setShowMore] = useState(false);
   const sectionRef = useRef(null);
 
   const categories = [
@@ -21,6 +25,22 @@ export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
   ];
 
   const filteredStones = filter === "All" ? stones : stones.filter(stone => stone.category === filter);
+  const displayedStones = showMore ? filteredStones : filteredStones.slice(0, 8);
+
+  // Handle external category changes
+  useEffect(() => {
+    if (initialCategory && initialCategory !== filter) {
+      setFilter(initialCategory);
+      setShowMore(false);
+    }
+  }, [initialCategory]);
+
+  // Notify parent of filter changes
+  useEffect(() => {
+    if (onFilterChange) {
+      onFilterChange(filter);
+    }
+  }, [filter, onFilterChange]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -38,6 +58,11 @@ export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
 
     return () => observer.disconnect();
   }, []);
+
+  const handleFilterChange = (category: string) => {
+    setFilter(category);
+    setShowMore(false);
+  };
 
   return (
     <section 
@@ -64,7 +89,7 @@ export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
               <Button
                 key={category}
                 variant={filter === category ? "default" : "outline"}
-                onClick={() => setFilter(category)}
+                onClick={() => handleFilterChange(category)}
                 className="text-xs sm:text-sm px-2 sm:px-3 py-2 whitespace-nowrap"
               >
                 {category}
@@ -75,7 +100,7 @@ export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
 
         {/* Stone Grid */}
         <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4 lg:gap-6 max-w-7xl mx-auto">
-          {filteredStones.map((stone, index) => (
+          {displayedStones.map((stone, index) => (
             <div
               key={stone.id}
               className={`group cursor-pointer transition-all duration-700 ${
@@ -126,6 +151,34 @@ export const StoneCollection = ({ onStoneSelect }: StoneCollectionProps) => {
             </div>
           ))}
         </div>
+
+        {/* Show More Button */}
+        {filteredStones.length > 8 && !showMore && (
+          <div className="text-center mt-8">
+            <Button
+              onClick={() => setShowMore(true)}
+              variant="outline"
+              size="lg"
+              className="px-8 py-3"
+            >
+              Show More {filter !== "All" ? filter : "Products"} ({filteredStones.length - displayedStones.length} more)
+            </Button>
+          </div>
+        )}
+
+        {/* Show Less Button */}
+        {showMore && filteredStones.length > 8 && (
+          <div className="text-center mt-8">
+            <Button
+              onClick={() => setShowMore(false)}
+              variant="outline"
+              size="lg"
+              className="px-8 py-3"
+            >
+              Show Less
+            </Button>
+          </div>
+        )}
 
         {filteredStones.length === 0 && (
           <div className="text-center py-12">

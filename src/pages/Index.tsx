@@ -13,6 +13,7 @@ import { StoneModal } from "@/components/StoneModal";
 const Index = () => {
   const [selectedStone, setSelectedStone] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<string>("All");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -23,12 +24,20 @@ const Index = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const handleCategorySelect = (category: string) => {
+    setSelectedCategory(category);
+  };
+
   return (
     <div className="min-h-screen bg-background">
-      <Header isScrolled={isScrolled} />
+      <Header isScrolled={isScrolled} onCategorySelect={handleCategorySelect} />
       <HeroSection />
       <AboutSection />
-      <StoneCollection onStoneSelect={setSelectedStone} />
+      <StoneCollection 
+        onStoneSelect={setSelectedStone} 
+        initialCategory={selectedCategory}
+        onFilterChange={setSelectedCategory}
+      />
       <WhyChooseUs />
       <Testimonials />
       <ContactSection />

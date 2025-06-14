@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -13,11 +14,10 @@ import { ThemeToggle } from "./ThemeToggle";
 
 interface HeaderProps {
   isScrolled: boolean;
+  onCategorySelect?: (category: string) => void;
 }
 
-
-
-export const Header = ({ isScrolled }: HeaderProps) => {
+export const Header = ({ isScrolled, onCategorySelect }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
@@ -28,29 +28,46 @@ export const Header = ({ isScrolled }: HeaderProps) => {
     setIsMenuOpen(false);
   };
 
+  const handleCategoryClick = (category: string) => {
+    scrollToSection('collection');
+    if (onCategorySelect) {
+      // Small delay to ensure the section is in view before filtering
+      setTimeout(() => {
+        onCategorySelect(category);
+      }, 300);
+    }
+    setIsMenuOpen(false);
+  };
+
   const productCategories = [
     {
       title: "Semi Precious Stone Slabs",
+      category: "Gemstone Slabs",
       items: ["Various semi-precious stone options"]
     },
     {
       title: "Agate Stone Slabs",
+      category: "Agate Stone Slabs",
       items: ["Blue Agate", "Black Agate", "Crystal Agate", "Green Agate", "Pink Agate", "Purple Agate", "Natural Agate", "Moss Agate", "Agatona"]
     },
     {
       title: "Quartz Stone Slabs",
+      category: "Quartz Stone Slabs",
       items: ["Crystal Quartz", "Smokey Quartz", "Pink Quartz", "Amethyst"]
     },
     {
       title: "Mother of Pearl (MOP)",
+      category: "Mother of Pearl (MOP)",
       items: ["Golden MOP", "Green Abelone", "White MOP", "Black MOP"]
     },
     {
       title: "Gemstone Slabs",
+      category: "Gemstone Slabs",
       items: ["Black Obsidian", "Golden Tiger Eye", "Blue Tiger Eye", "Malachite", "Labradorite", "Sodalite Blue", "Black Petrified Wood", "Brown Petrified Wood", "Golden Pyrite", "Silver Pyrite", "Selenite", "Red Jasper"]
     },
     {
       title: "Other Products",
+      category: "Non-Stone Items",
       items: ["Washbasins", "Bath Tubs", "Other Articles"]
     }
   ];
@@ -105,21 +122,29 @@ export const Header = ({ isScrolled }: HeaderProps) => {
                     <div className="grid w-[600px] xl:w-[800px] gap-4 p-6 lg:grid-cols-2">
                       {productCategories.map((category) => (
                         <div key={category.title} className="space-y-2">
-                          <h4 className="text-sm font-semibold text-foreground">{category.title}</h4>
+                          <button
+                            onClick={() => handleCategoryClick(category.category)}
+                            className="text-sm font-semibold text-foreground hover:text-primary transition-colors w-full text-left"
+                          >
+                            {category.title}
+                          </button>
                           <div className="space-y-1">
                             {category.items.slice(0, 4).map((item) => (
                               <button
                                 key={item}
-                                onClick={() => scrollToSection('collection')}
+                                onClick={() => handleCategoryClick(category.category)}
                                 className="block text-xs text-muted-foreground hover:text-primary transition-colors w-full text-left py-1"
                               >
                                 {item}
                               </button>
                             ))}
                             {category.items.length > 4 && (
-                              <span className="text-xs text-muted-foreground italic">
+                              <button
+                                onClick={() => handleCategoryClick(category.category)}
+                                className="text-xs text-muted-foreground hover:text-primary transition-colors italic"
+                              >
                                 +{category.items.length - 4} more...
-                              </span>
+                              </button>
                             )}
                           </div>
                         </div>
@@ -173,12 +198,23 @@ export const Header = ({ isScrolled }: HeaderProps) => {
               >
                 About Us
               </button>
-              <button
-                onClick={() => scrollToSection('collection')}
-                className="block w-full text-left px-4 py-2 text-foreground hover:text-primary hover:bg-accent transition-colors"
-              >
-                Products
-              </button>
+              
+              {/* Mobile Product Categories */}
+              <div className="px-4">
+                <p className="text-sm font-medium text-foreground mb-2">Products</p>
+                <div className="space-y-1 ml-4">
+                  {productCategories.map((category) => (
+                    <button
+                      key={category.title}
+                      onClick={() => handleCategoryClick(category.category)}
+                      className="block w-full text-left text-sm text-muted-foreground hover:text-primary transition-colors py-1"
+                    >
+                      {category.title}
+                    </button>
+                  ))}
+                </div>
+              </div>
+              
               <button
                 onClick={() => scrollToSection('contact')}
                 className="block w-full text-left px-4 py-2 text-foreground hover:text-primary hover:bg-accent transition-colors"
