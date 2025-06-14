@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -33,7 +34,7 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
     setIsLoading(true);
     
     try {
-      const success = sendWhatsAppMessage({
+      const success = await sendWhatsAppMessage({
         name: 'Website Visitor',
         email: 'visitor@website.com',
         message: `I am interested in getting a detailed quote for this stone. Please provide pricing and availability information.`,
@@ -45,16 +46,16 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
 
       if (success) {
         toast({
-          title: "WhatsApp Opened!",
-          description: "WhatsApp has been opened with your quote request. Please send the message to complete your request.",
+          title: "Quote Request Sent!",
+          description: "Your quote request has been sent via WhatsApp. We'll get back to you soon.",
         });
       } else {
-        throw new Error('Failed to open WhatsApp');
+        throw new Error('Failed to send WhatsApp message');
       }
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to open WhatsApp. Please try contacting us directly.",
+        description: "Failed to send quote request. Please try contacting us directly.",
         variant: "destructive",
       });
     } finally {
@@ -176,3 +177,4 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
     </Dialog>
   );
 };
+
