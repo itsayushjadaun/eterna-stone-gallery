@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
@@ -46,16 +45,16 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
 
       if (success) {
         toast({
-          title: "Quote Request Sent!",
-          description: "Your quote request has been sent via WhatsApp. We'll get back to you soon.",
+          title: "WhatsApp Opened!",
+          description: "WhatsApp has been opened with your quote request message.",
         });
       } else {
-        throw new Error('Failed to send WhatsApp message');
+        throw new Error('Failed to open WhatsApp');
       }
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to send quote request. Please try contacting us directly.",
+        description: "Failed to open WhatsApp. Please try again.",
         variant: "destructive",
       });
     } finally {
@@ -177,4 +176,3 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
     </Dialog>
   );
 };
-

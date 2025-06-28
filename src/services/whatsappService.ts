@@ -1,5 +1,4 @@
 
-
 export interface WhatsAppData {
   name: string;
   email: string;
@@ -48,33 +47,19 @@ ${data.message}
 *Request Type:* General Contact`;
     }
 
-    // Using a WhatsApp API service (you'll need to replace with your actual API endpoint)
-    const response = await fetch('https://api.whatsapp.com/send', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer YOUR_WHATSAPP_API_TOKEN', // You'll need to add your token
-      },
-      body: JSON.stringify({
-        messaging_product: 'whatsapp',
-        to: whatsappNumber,
-        type: 'text',
-        text: {
-          body: messageText
-        }
-      })
-    });
-
-    if (response.ok) {
-      console.log('WhatsApp message sent successfully');
-      return true;
-    } else {
-      console.error('Failed to send WhatsApp message:', response.statusText);
-      return false;
-    }
+    // Encode the message for URL
+    const encodedMessage = encodeURIComponent(messageText);
+    
+    // Create WhatsApp URL
+    const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${encodedMessage}`;
+    
+    // Open WhatsApp in a new tab
+    window.open(whatsappUrl, '_blank');
+    
+    console.log('WhatsApp message opened successfully');
+    return true;
   } catch (error) {
-    console.error('Failed to send WhatsApp message:', error);
+    console.error('Failed to open WhatsApp message:', error);
     return false;
   }
 };
-
