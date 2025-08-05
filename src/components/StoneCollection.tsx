@@ -135,10 +135,7 @@ export const StoneCollection = ({ onStoneSelect, initialCategory, onFilterChange
                   <p className="text-muted-foreground text-xs sm:text-sm mb-2 sm:mb-3 line-clamp-2 leading-relaxed">
                     {stone.description}
                   </p>
-                  <div className="flex justify-between items-center">
-                    <span className="text-xs sm:text-sm font-semibold text-primary">
-                      {stone.price}
-                    </span>
+                  <div className="flex justify-center">
                     <Button 
                       size="sm" 
                       className="bg-primary text-primary-foreground hover:bg-primary/90 text-[10px] sm:text-xs px-2 sm:px-3 py-1"

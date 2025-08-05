@@ -13,11 +13,11 @@ import { Menu, X } from "lucide-react";
 import { ThemeToggle } from "./ThemeToggle";
 
 interface HeaderProps {
-  isScrolled: boolean;
+  isScrolled?: boolean;
   onCategorySelect?: (category: string) => void;
 }
 
-export const Header = ({ isScrolled, onCategorySelect }: HeaderProps) => {
+export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
@@ -29,13 +29,8 @@ export const Header = ({ isScrolled, onCategorySelect }: HeaderProps) => {
   };
 
   const handleCategoryClick = (category: string) => {
-    scrollToSection('collection');
-    if (onCategorySelect) {
-      // Small delay to ensure the section is in view before filtering
-      setTimeout(() => {
-        onCategorySelect(category);
-      }, 300);
-    }
+    // Navigate to products page
+    window.location.href = '/products';
     setIsMenuOpen(false);
   };
 

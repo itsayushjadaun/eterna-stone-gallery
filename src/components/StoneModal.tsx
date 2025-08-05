@@ -12,8 +12,6 @@ interface Stone {
   description: string;
   detailedDescription: string;
   properties: string[];
-  origin: string;
-  price: string;
   image: string;
   category: string;
   chakra?: string;
@@ -39,8 +37,7 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
         message: `I am interested in getting a detailed quote for this stone. Please provide pricing and availability information.`,
         type: 'quote',
         stoneName: stone.name,
-        stoneCategory: stone.category,
-        stonePrice: stone.price
+        stoneCategory: stone.category
       });
 
       if (success) {
@@ -90,16 +87,6 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
                   />
                 </div>
                 
-                <div className="grid grid-cols-2 gap-4">
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Origin</h4>
-                    <p className="text-muted-foreground text-sm lg:text-base">{stone.origin}</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-foreground mb-2">Price Range</h4>
-                    <p className="text-lg lg:text-xl font-semibold text-primary">{stone.price}</p>
-                  </div>
-                </div>
 
                 {stone.chakra && (
                   <div>
