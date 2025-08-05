@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import {
@@ -19,18 +20,34 @@ interface HeaderProps {
 
 export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
     }
     setIsMenuOpen(false);
   };
 
   const handleCategoryClick = (category: string) => {
-    // Navigate to products page
-    window.location.href = '/products';
+    navigate('/products');
+    setIsMenuOpen(false);
+  };
+
+  const handleViewProducts = () => {
+    navigate('/products');
     setIsMenuOpen(false);
   };
 
@@ -161,7 +178,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
           <div className="flex items-center space-x-3">
             <ThemeToggle />
             <Button 
-              onClick={() => scrollToSection('collection')}
+              onClick={handleViewProducts}
               className="hidden lg:flex bg-primary text-primary-foreground hover:bg-primary/90 text-sm px-4 py-2"
             >
               View Products
@@ -218,7 +235,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
               </button>
               <div className="px-4 pt-2">
                 <Button 
-                  onClick={() => scrollToSection('collection')}
+                  onClick={handleViewProducts}
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
                 >
                   View Products
