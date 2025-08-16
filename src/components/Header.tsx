@@ -95,18 +95,23 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo Section */}
           <div className="flex items-center space-x-2 lg:space-x-3 flex-shrink-0">
-            <img 
-              src="/lovable-uploads/93aa4666-afd3-44ff-b358-bb05a1ee65d3.png" 
-              alt="Luminor Stones Logo" 
-              className="h-8 lg:h-10 w-auto"
-              onError={(e) => {
-                const target = e.target as HTMLImageElement;
-                target.style.display = 'none';
-              }}
-            />
-            <h1 className="text-lg lg:text-2xl font-playfair font-bold text-foreground hidden sm:block">
-              Luminor Stones
-            </h1>
+            <button
+              onClick={() => scrollToSection('home')}
+              className="flex items-center space-x-2 lg:space-x-3 hover:opacity-80 transition-opacity"
+            >
+              <img 
+                src="/lovable-uploads/93aa4666-afd3-44ff-b358-bb05a1ee65d3.png" 
+                alt="Luminor Stones Logo" 
+                className="h-8 lg:h-10 w-auto"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.style.display = 'none';
+                }}
+              />
+              <h1 className="text-lg lg:text-2xl font-playfair font-bold text-foreground hidden sm:block">
+                Luminor Stones
+              </h1>
+            </button>
           </div>
 
           {/* Desktop Navigation */}
