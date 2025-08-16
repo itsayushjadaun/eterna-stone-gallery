@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { useTheme } from "@/contexts/ThemeContext";
 import { cn } from "@/lib/utils";
 import {
   NavigationMenu,
@@ -22,6 +23,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { theme } = useTheme();
 
   const scrollToSection = (sectionId: string) => {
     if (location.pathname !== '/') {
@@ -83,6 +85,19 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
       items: ["Washbasins", "Bath Tubs", "Other Articles"]
     }
   ];
+  const getTextColor = () => {
+    if (isScrolled) {
+      return theme === 'light' ? 'text-foreground' : 'text-white';
+    }
+    return 'text-white';
+  };
+
+  const getHoverColor = () => {
+    if (isScrolled) {
+      return theme === 'light' ? 'hover:text-primary' : 'hover:text-white/80';
+    }
+    return 'hover:text-white/80';
+  };
 
   return (
     <header className={cn(
@@ -102,13 +117,13 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
               <img 
                 src="/lovable-uploads/93aa4666-afd3-44ff-b358-bb05a1ee65d3.png" 
                 alt="Luminor Stones Logo" 
-                className="h-8 lg:h-10 w-auto filter brightness-0 invert"
+                className={`h-8 lg:h-10 w-auto ${isScrolled && theme === 'light' ? '' : 'filter brightness-0 invert'}`}
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
                 }}
               />
-              <h1 className="text-lg lg:text-2xl font-playfair font-bold text-white hidden sm:block">
+              <h1 className={`text-lg lg:text-2xl font-playfair font-bold hidden sm:block ${getTextColor()}`}>
                 Luminor Stones
               </h1>
             </button>
@@ -118,13 +133,13 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
           <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             <button
               onClick={() => scrollToSection('home')}
-              className="text-sm font-medium text-white hover:text-white/80 transition-colors"
+              className={`text-sm font-medium transition-colors ${getTextColor()} ${getHoverColor()}`}
             >
               Home
             </button>
             <button
               onClick={() => scrollToSection('about')}
-              className="text-sm font-medium text-white hover:text-white/80 transition-colors"
+              className={`text-sm font-medium transition-colors ${getTextColor()} ${getHoverColor()}`}
             >
               About Us
             </button>
@@ -132,7 +147,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm font-medium text-white hover:text-white/80 bg-transparent data-[state=open]:bg-accent data-[state=open]:text-foreground">
+                  <NavigationMenuTrigger className={`text-sm font-medium bg-transparent data-[state=open]:bg-accent data-[state=open]:text-foreground transition-colors ${getTextColor()} ${getHoverColor()}`}>
                     Products
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -174,14 +189,14 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
 
             <button
               onClick={() => scrollToSection('contact')}
-              className="text-sm font-medium text-white hover:text-white/80 transition-colors"
+              className={`text-sm font-medium transition-colors ${getTextColor()} ${getHoverColor()}`}
             >
               Contact Us
             </button>
           </nav>
 
           <div className="flex items-center space-x-3">
-            <ThemeToggle />
+            <ThemeToggle isScrolled={isScrolled} />
             <Button 
               onClick={handleViewProducts}
               className="hidden lg:flex bg-primary text-primary-foreground hover:bg-primary/90 text-sm px-4 py-2"
@@ -192,7 +207,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 text-white hover:text-white/80 transition-colors"
+              className={`lg:hidden p-2 transition-colors ${getTextColor()} ${getHoverColor()}`}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
