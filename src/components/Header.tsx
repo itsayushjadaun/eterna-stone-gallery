@@ -102,13 +102,13 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
               <img 
                 src="/lovable-uploads/93aa4666-afd3-44ff-b358-bb05a1ee65d3.png" 
                 alt="Luminor Stones Logo" 
-                className="h-8 lg:h-10 w-auto"
+                className="h-8 lg:h-10 w-auto filter brightness-0 invert"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';
                 }}
               />
-              <h1 className="text-lg lg:text-2xl font-playfair font-bold text-foreground hidden sm:block">
+              <h1 className="text-lg lg:text-2xl font-playfair font-bold text-white hidden sm:block">
                 Luminor Stones
               </h1>
             </button>
@@ -118,13 +118,13 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
           <nav className="hidden lg:flex items-center space-x-6 xl:space-x-8">
             <button
               onClick={() => scrollToSection('home')}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              className="text-sm font-medium text-white hover:text-white/80 transition-colors"
             >
               Home
             </button>
             <button
               onClick={() => scrollToSection('about')}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              className="text-sm font-medium text-white hover:text-white/80 transition-colors"
             >
               About Us
             </button>
@@ -132,7 +132,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm font-medium text-foreground hover:text-primary bg-transparent data-[state=open]:bg-accent">
+                  <NavigationMenuTrigger className="text-sm font-medium text-white hover:text-white/80 bg-transparent data-[state=open]:bg-accent">
                     Products
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
@@ -174,7 +174,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
 
             <button
               onClick={() => scrollToSection('contact')}
-              className="text-sm font-medium text-foreground hover:text-primary transition-colors"
+              className="text-sm font-medium text-white hover:text-white/80 transition-colors"
             >
               Contact Us
             </button>
@@ -192,7 +192,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 text-foreground hover:text-primary transition-colors"
+              className="lg:hidden p-2 text-white hover:text-white/80 transition-colors"
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
