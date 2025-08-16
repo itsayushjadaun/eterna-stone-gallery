@@ -132,7 +132,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm font-medium text-white hover:text-white/80 bg-transparent data-[state=open]:bg-accent">
+                  <NavigationMenuTrigger className="text-sm font-medium text-white hover:text-white/80 bg-transparent data-[state=open]:bg-accent data-[state=open]:text-foreground">
                     Products
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
