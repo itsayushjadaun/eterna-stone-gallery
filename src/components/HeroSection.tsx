@@ -115,7 +115,7 @@ export const HeroSection = () => {
           <Button
             variant="outline"
             size="lg"
-            className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-gray-900 px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg font-medium transition-all duration-300 shadow-lg"
+            className="w-full sm:w-auto border-2 border-white bg-transparent text-white hover:bg-white hover:text-gray-900 px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg font-medium transition-all duration-300 shadow-lg"
             onClick={() => scrollToSection('about')}
           >
             About Luminor Stones
