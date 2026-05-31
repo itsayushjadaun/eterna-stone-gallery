@@ -65,7 +65,7 @@ export const HeroSection = () => {
                   <img
                     src={image}
                     alt={`Premium stone texture ${index + 1}`}
-                    className="w-full h-full object-cover opacity-50"
+                    className="w-full h-full object-cover"
                     loading={index === 0 ? "eager" : "lazy"}
                   />
                 </div>
