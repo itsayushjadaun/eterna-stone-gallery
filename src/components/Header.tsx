@@ -12,7 +12,6 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { Menu, X } from "lucide-react";
-import { ThemeToggle } from "./ThemeToggle";
 
 interface HeaderProps {
   isScrolled?: boolean;
@@ -196,7 +195,6 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
           </nav>
 
           <div className="flex items-center space-x-3">
-            <ThemeToggle isScrolled={isScrolled} />
             <Button 
               onClick={handleViewProducts}
               className="hidden lg:flex bg-primary text-primary-foreground hover:bg-primary/90 text-sm px-4 py-2"
