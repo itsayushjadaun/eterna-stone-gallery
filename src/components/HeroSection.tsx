@@ -65,7 +65,7 @@ export const HeroSection = () => {
                   <img
                     src={image}
                     alt={`Premium stone texture ${index + 1}`}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover opacity-50"
                     loading={index === 0 ? "eager" : "lazy"}
                   />
                 </div>
@@ -73,7 +73,7 @@ export const HeroSection = () => {
             ))}
           </CarouselContent>
         </Carousel>
-        <div className="absolute inset-0 bg-black/40 dark:bg-black/60"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
       </div>
 
       {/* Content */}
