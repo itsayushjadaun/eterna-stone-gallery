@@ -87,17 +87,6 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Categories */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Stone Categories</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-background/80 hover:text-background transition-colors">Healing Crystals</a></li>
-              <li><a href="#" className="text-background/80 hover:text-background transition-colors">Prosperity Stones</a></li>
-              <li><a href="#" className="text-background/80 hover:text-background transition-colors">Love Stones</a></li>
-              <li><a href="#" className="text-background/80 hover:text-background transition-colors">Protection Stones</a></li>
-            </ul>
-          </div>
-
           {/* Newsletter */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Stay Connected</h4>
