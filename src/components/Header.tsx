@@ -85,25 +85,16 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
     }
   ];
   const getTextColor = () => {
-    if (isScrolled) {
-      return theme === 'light' ? 'text-foreground' : 'text-white';
-    }
-    return 'text-white';
+    return 'text-foreground';
   };
 
   const getHoverColor = () => {
-    if (isScrolled) {
-      return theme === 'light' ? 'hover:text-primary' : 'hover:text-white/80';
-    }
-    return 'hover:text-white/80';
+    return 'hover:text-primary';
   };
 
   return (
     <header className={cn(
-      "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
-      isScrolled 
-        ? "bg-background/95 backdrop-blur-md border-b border-border shadow-sm" 
-        : "bg-transparent"
+      "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
     )}>
       <div className="container mx-auto px-4 lg:px-6">
         <div className="flex items-center justify-between h-16 lg:h-20">
@@ -116,7 +107,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
               <img 
                 src="/lovable-uploads/93aa4666-afd3-44ff-b358-bb05a1ee65d3.png" 
                 alt="Luminor Stones Logo" 
-                className={`h-8 lg:h-10 w-auto ${isScrolled && theme === 'light' ? '' : 'filter brightness-0 invert'}`}
+                className="h-8 lg:h-10 w-auto"
                 onError={(e) => {
                   const target = e.target as HTMLImageElement;
                   target.style.display = 'none';

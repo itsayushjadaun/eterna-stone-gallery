@@ -27,7 +27,7 @@ export const Footer = () => {
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-playfair font-bold mb-4">Eterna Stones</h3>
@@ -84,17 +84,6 @@ export const Footer = () => {
                   Contact
                 </button>
               </li>
-            </ul>
-          </div>
-
-          {/* Categories */}
-          <div>
-            <h4 className="text-lg font-semibold mb-4">Stone Categories</h4>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-background/80 hover:text-background transition-colors">Healing Crystals</a></li>
-              <li><a href="#" className="text-background/80 hover:text-background transition-colors">Prosperity Stones</a></li>
-              <li><a href="#" className="text-background/80 hover:text-background transition-colors">Love Stones</a></li>
-              <li><a href="#" className="text-background/80 hover:text-background transition-colors">Protection Stones</a></li>
             </ul>
           </div>
 
