@@ -27,7 +27,7 @@ export const Footer = () => {
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
-        <div className="grid md:grid-cols-4 gap-8 mb-12">
+        <div className="grid md:grid-cols-3 gap-8 mb-12">
           {/* Brand */}
           <div>
             <h3 className="text-2xl font-playfair font-bold mb-4">Eterna Stones</h3>
