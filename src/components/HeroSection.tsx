@@ -82,9 +82,9 @@ export const HeroSection = () => {
       }`}>
         
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold mb-4 lg:mb-6 leading-tight text-white [text-shadow:_2px_2px_4px_rgb(0_0_0_/_0.8)]">
-          Premium Stone Slabs
+          Premium Gem Stone Slabs
           <br />
-          <span className="text-stone-100 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">& Natural Gemstones</span>
+          <span className="text-stone-100 text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl">& Articles</span>
         </h1>
         
         <p className="text-base sm:text-lg md:text-xl lg:text-2xl mb-6 lg:mb-8 text-stone-100 font-light max-w-3xl mx-auto leading-relaxed [text-shadow:_1px_1px_2px_rgb(0_0_0_/_0.8)]">
