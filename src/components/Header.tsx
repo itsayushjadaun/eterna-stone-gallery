@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import avanLogo from "@/assets/avan-logo.jpeg.asset.json";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -105,16 +106,12 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
               className="flex items-center space-x-2 lg:space-x-3 hover:opacity-80 transition-opacity"
             >
               <img 
-                src="/lovable-uploads/93aa4666-afd3-44ff-b358-bb05a1ee65d3.png" 
-                alt="Luminor Stones Logo" 
-                className="h-8 lg:h-10 w-auto"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.style.display = 'none';
-                }}
+                src={avanLogo.url}
+                alt="Avan Exports Logo" 
+                className="h-10 lg:h-12 w-auto"
               />
               <h1 className={`text-lg lg:text-2xl font-playfair font-bold hidden sm:block ${getTextColor()}`}>
-                Luminor Stones
+                Avan Exports
               </h1>
             </button>
           </div>

@@ -80,17 +80,6 @@ export const HeroSection = () => {
       <div className={`relative z-10 text-center max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 transition-all duration-1000 ${
         isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
       }`}>
-        <div className="flex justify-center mb-6 lg:mb-8">
-          <img 
-            src="/lovable-uploads/93aa4666-afd3-44ff-b358-bb05a1ee65d3.png" 
-            alt="Luminor Stones Logo" 
-            className="h-16 sm:h-20 lg:h-24 w-auto filter brightness-0 invert"
-            onError={(e) => {
-              const target = e.target as HTMLImageElement;
-              target.style.display = 'none';
-            }}
-          />
-        </div>
         
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-playfair font-bold mb-4 lg:mb-6 leading-tight text-white [text-shadow:_2px_2px_4px_rgb(0_0_0_/_0.8)]">
           Premium Stone Slabs
@@ -118,7 +107,7 @@ export const HeroSection = () => {
             className="w-full sm:w-auto border-2 border-white bg-transparent text-white hover:bg-white hover:text-gray-900 px-6 lg:px-8 py-3 lg:py-4 text-base lg:text-lg font-medium transition-all duration-300 shadow-lg"
             onClick={() => scrollToSection('about')}
           >
-            About Luminor Stones
+            About Avan Exports
           </Button>
         </div>
       </div>
