@@ -5,7 +5,7 @@ const testimonials = [
   {
     name: "Sarah Mitchell",
     location: "California, USA",
-    quote: "The agate slabs I purchased from Luminor Stones are absolutely stunning. The quality and craftsmanship exceeded my expectations. Highly recommended!",
+    quote: "The agate slabs I purchased from Avan Exports are absolutely stunning. The quality and craftsmanship exceeded my expectations. Highly recommended!",
     rating: 5
   },
   {
@@ -17,7 +17,7 @@ const testimonials = [
   {
     name: "Emma Thompson",
     location: "London, UK",
-    quote: "I've been working with natural stones for years, and Luminor Stones has some of the finest quality slabs I've ever seen. Their expertise really shows.",
+    quote: "I've been working with natural stones for years, and Avan Exports has some of the finest quality slabs I've ever seen. Their expertise really shows.",
     rating: 5
   }
 ];

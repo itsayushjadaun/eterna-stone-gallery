@@ -55,7 +55,7 @@ export const WhyChooseUs = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold text-foreground mb-4 lg:mb-6">
-            Why Choose Luminor Stones?
+            Why Choose Avan Exports?
           </h2>
           <p className="text-base lg:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Our commitment to quality, authenticity, and customer satisfaction sets us apart 

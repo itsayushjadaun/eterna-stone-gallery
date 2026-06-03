@@ -30,11 +30,16 @@ export const Footer = () => {
         <div className="grid md:grid-cols-3 gap-8 mb-12">
           {/* Brand */}
           <div>
-            <h3 className="text-2xl font-playfair font-bold mb-4">Eterna Stones</h3>
+            <h3 className="text-2xl font-playfair font-bold mb-4">Avan Exports</h3>
             <p className="text-background/80 mb-4">
               Bringing you the finest collection of semi-precious stones and crystals 
               from around the world.
             </p>
+            <div className="text-background/80 text-sm space-y-1 mb-4">
+              <p>Udaipur, Rajasthan</p>
+              <p>Email: avanexports@gmail.com</p>
+              <p>Contact: +91 9461520121</p>
+            </div>
             <div className="flex space-x-4">
               <a href="#" className="text-background/80 hover:text-background transition-colors">
                 Instagram
@@ -115,7 +120,7 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-background/80 mb-4 md:mb-0">
-            © 2024 Eterna Stones. All rights reserved.
+            © 2024 Avan Exports. All rights reserved.
           </p>
           <div className="flex space-x-6">
             <a href="#" className="text-background/80 hover:text-background transition-colors">

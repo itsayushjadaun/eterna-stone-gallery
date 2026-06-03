@@ -23,7 +23,7 @@ export interface EmailData {
 export const sendEmail = async (data: EmailData): Promise<boolean> => {
   try {
     const templateParams = {
-      to_email: 'jadaunayush3@gmail.com',
+      to_email: 'avanexports@gmail.com',
       from_name: data.name,
       from_email: data.email,
       phone: data.phone || 'Not provided',

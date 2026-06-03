@@ -1,5 +1,6 @@
 
 import { useEffect, useRef, useState } from "react";
+import aboutImage from "@/assets/about-stones.jpeg.asset.json";
 
 export const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,13 +35,13 @@ export const AboutSection = () => {
             isVisible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
           }`}>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-playfair font-bold text-foreground mb-4 lg:mb-6 leading-tight">
-              Luminor Stones,
+              Avan Exports,
               <br />
               <span className="text-muted-foreground text-2xl sm:text-3xl lg:text-4xl xl:text-5xl">Excellence in Natural Stone</span>
             </h2>
             
             <p className="text-base lg:text-lg text-muted-foreground mb-4 lg:mb-6 leading-relaxed">
-              Luminor Stones specializes in premium natural stone slabs, featuring an 
+              Avan Exports specializes in premium natural stone slabs, featuring an 
               extensive collection of agate, quartz, mother of pearl, and exotic gemstones. 
               Our carefully curated selection meets the highest standards for luxury 
               architectural and decorative applications.
@@ -55,15 +56,15 @@ export const AboutSection = () => {
 
             <div className="grid grid-cols-3 gap-4 lg:gap-6">
               <div className="text-center">
-                <div className="text-2xl lg:text-3xl font-playfair font-bold text-primary mb-1 lg:mb-2">100+</div>
+                <div className="text-2xl lg:text-3xl font-playfair font-bold text-primary mb-1 lg:mb-2">50+</div>
                 <div className="text-muted-foreground text-xs lg:text-sm">Stone Varieties</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl lg:text-3xl font-playfair font-bold text-primary mb-1 lg:mb-2">15+</div>
+                <div className="text-2xl lg:text-3xl font-playfair font-bold text-primary mb-1 lg:mb-2">10+</div>
                 <div className="text-muted-foreground text-xs lg:text-sm">Years Experience</div>
               </div>
               <div className="text-center">
-                <div className="text-2xl lg:text-3xl font-playfair font-bold text-primary mb-1 lg:mb-2">500+</div>
+                <div className="text-2xl lg:text-3xl font-playfair font-bold text-primary mb-1 lg:mb-2">100+</div>
                 <div className="text-muted-foreground text-xs lg:text-sm">Projects Completed</div>
               </div>
             </div>
@@ -74,14 +75,10 @@ export const AboutSection = () => {
           }`}>
             <div className="relative">
               <img
-                src="https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=800&q=80"
-                alt="Premium natural stone formations"
+                src={aboutImage.url}
+                alt="Premium natural stone collection"
                 className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg shadow-2xl"
                 loading="lazy"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.src = "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?auto=format&fit=crop&w=800&q=80";
-                }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent rounded-lg"></div>
             </div>

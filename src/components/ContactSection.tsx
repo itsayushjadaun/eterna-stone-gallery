@@ -86,7 +86,7 @@ export const ContactSection = () => {
           isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
         }`}>
           <h2 className="text-4xl md:text-5xl font-playfair font-bold text-foreground mb-6">
-            Contact Luminor Stones
+            Contact Avan Exports
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
             Ready to transform your space with premium natural stone? 
@@ -194,19 +194,18 @@ export const ContactSection = () => {
                   <div className="bg-card rounded-lg p-6 shadow-lg">
                     <h4 className="font-semibold text-foreground mb-3">Business Address</h4>
                     <p className="text-muted-foreground">
-                      Luminor Stones Showroom<br />
-                      Premium Stone District<br />
-                      Stone Valley, SV 12345<br />
-                      United States
+                      Avan Exports<br />
+                      Udaipur, Rajasthan<br />
+                      India
                     </p>
                   </div>
                   
                   <div className="bg-card rounded-lg p-6 shadow-lg">
                     <h4 className="font-semibold text-foreground mb-3">Contact Details</h4>
                     <div className="space-y-2 text-muted-foreground">
-                      <p><strong>Phone:</strong> +1 (555) 123-STONE</p>
-                      <p><strong>Email:</strong> info@luminorstones.com</p>
-                      <p><strong>WhatsApp:</strong> +1 (555) 123-4567</p>
+                      <p><strong>Phone:</strong> +91 9461520121</p>
+                      <p><strong>Email:</strong> avanexports@gmail.com</p>
+                      <p><strong>WhatsApp:</strong> +91 9461520121</p>
                     </div>
                   </div>
                   

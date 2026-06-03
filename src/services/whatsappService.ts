@@ -12,12 +12,12 @@ export interface WhatsAppData {
 
 export const sendWhatsAppMessage = async (data: WhatsAppData): Promise<boolean> => {
   try {
-    const whatsappNumber = '918824405590'; // India country code + number
+    const whatsappNumber = '919461520121'; // India country code + number
     
     let messageText = '';
     
     if (data.type === 'quote' && data.stoneName) {
-      messageText = `*Quote Request from Luminor Stones Website*
+      messageText = `*Quote Request from Avan Exports Website*
 
 *Stone Details:*
 - Name: ${data.stoneName}
@@ -34,7 +34,7 @@ ${data.message}
 
 *Request Type:* Quote Request`;
     } else {
-      messageText = `*Contact Request from Luminor Stones Website*
+      messageText = `*Contact Request from Avan Exports Website*
 
 *Customer Details:*
 - Name: ${data.name}
