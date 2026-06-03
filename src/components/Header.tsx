@@ -1,6 +1,6 @@
 
 import { useState } from "react";
-import avanLogo from "@/assets/avan-logo.jpeg.asset.json";
+import avanLogo from "@/assets/avan-logo.png.asset.json";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/contexts/ThemeContext";

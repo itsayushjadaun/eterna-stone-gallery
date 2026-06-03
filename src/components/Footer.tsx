@@ -40,17 +40,6 @@ export const Footer = () => {
               <p>Email: avanexports@gmail.com</p>
               <p>Contact: +91 9461520121</p>
             </div>
-            <div className="flex space-x-4">
-              <a href="#" className="text-background/80 hover:text-background transition-colors">
-                Instagram
-              </a>
-              <a href="#" className="text-background/80 hover:text-background transition-colors">
-                Facebook
-              </a>
-              <a href="#" className="text-background/80 hover:text-background transition-colors">
-                Pinterest
-              </a>
-            </div>
           </div>
 
           {/* Quick Links */}
