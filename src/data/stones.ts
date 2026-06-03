@@ -1,31 +1,31 @@
+import blueAgate from "@/assets/stones/blue-agate-classic.jpg.asset.json";
+import blackAgate from "@/assets/stones/black-agate-wild.jpeg.asset.json";
+import crystalAgate from "@/assets/stones/crystal-agate.jpg.asset.json";
+import greenAgate from "@/assets/stones/green-agate.jpg.asset.json";
+import naturalAgate from "@/assets/stones/natural-agate.jpg.asset.json";
+import mossAgate from "@/assets/stones/moss-agate.jpg.asset.json";
+import agatona from "@/assets/stones/agatona.jpg.asset.json";
+import greyAgate from "@/assets/stones/grey-agate.jpg.asset.json";
+import crystalQuartz from "@/assets/stones/crystal-quartz.jpg.asset.json";
+import smokyQuartz from "@/assets/stones/smoky-quartz.jpg.asset.json";
+import pinkQuartz from "@/assets/stones/pink-quartz.jpg.asset.json";
+import amethyst from "@/assets/stones/amethyst.jpg.asset.json";
+import motherOfPearl from "@/assets/stones/mother-of-pearl.jpeg.asset.json";
+import blackObsidian from "@/assets/stones/black-obsidian.jpg.asset.json";
+import goldenTigerEye from "@/assets/stones/golden-tiger-eye.jpg.asset.json";
+import malachite from "@/assets/stones/malachite.jpg.asset.json";
+import sodalite from "@/assets/stones/sodalite.jpg.asset.json";
+import blackPetrifiedWood from "@/assets/stones/black-petrified-wood.jpg.asset.json";
+import brownPetrifiedWood from "@/assets/stones/brown-petrified-wood.jpg.asset.json";
+
 export const stones = [
-  // Blue Agate
   {
     id: "blue-agate-classic",
     name: "Blue Agate Classic",
     description: "Classic blue agate slab with vibrant blue tones and natural banding.",
     detailedDescription: "A beautiful classic blue agate slab, perfect for luxury interiors and decorative surfaces. The natural banding and vibrant color make it a standout choice.",
     properties: ["Translucent", "Vibrant Blue", "Natural Banding"],
-    image: "/Images/1.1 Blue Agate/Blue Agate Classic.jpg",
-    category: "Agate Stone Slabs"
-  },
-  {
-    id: "blue-agate-wild",
-    name: "Blue Agate Wild",
-    description: "Wild blue agate slab with unique patterns and deep blue hues.",
-    detailedDescription: "This wild blue agate slab features unique, organic patterns and deep blue hues, ideal for statement pieces and backlit applications.",
-    properties: ["Unique Patterns", "Deep Blue", "Translucent"],
-    image: "/Images/1.1 Blue Agate/Blue Agate Wild.jpg",
-    category: "Agate Stone Slabs"
-  },
-  // Black Agate
-  {
-    id: "black-agate-classic",
-    name: "Black Agate Classic",
-    description: "Classic black agate slab with elegant dark tones and subtle veining.",
-    detailedDescription: "A classic black agate slab, offering elegant dark tones and subtle natural veining. Perfect for modern and dramatic interiors.",
-    properties: ["Deep Black", "Subtle Veining", "Elegant"],
-    image: "/Images/1.2 Black Agate/Black Agate Classic.jpg",
+    image: blueAgate.url,
     category: "Agate Stone Slabs"
   },
   {
@@ -34,271 +34,160 @@ export const stones = [
     description: "Wild black agate slab with bold patterns and strong contrast.",
     detailedDescription: "Wild black agate slab featuring bold, organic patterns and strong contrast, ideal for feature walls and luxury surfaces.",
     properties: ["Bold Patterns", "Strong Contrast", "Natural Artistry"],
-    image: "/Images/1.2 Black Agate/BLACK AGATE wild.jpg",
+    image: blackAgate.url,
     category: "Agate Stone Slabs"
   },
-  // Crystal Agate
   {
-    id: "crystal-agate-classic",
-    name: "Crystal Agate Classic",
-    description: "Classic crystal agate slab with translucent beauty and natural banding.",
-    detailedDescription: "A classic crystal agate slab, perfect for elegant interiors and decorative surfaces. The natural banding and translucency make it a premium choice.",
+    id: "crystal-agate",
+    name: "Crystal Agate",
+    description: "Crystal agate slab with translucent beauty and natural banding.",
+    detailedDescription: "A premium crystal agate slab, perfect for backlit applications and elegant interiors. Its translucency and natural banding shine through.",
     properties: ["Translucent", "Natural Banding", "Elegant"],
-    image: "/Images/1.3 Crystal Agate/Crystal Agate Classic.jpg",
+    image: crystalAgate.url,
     category: "Agate Stone Slabs"
   },
   {
-    id: "crystal-agate-classic-translucent",
-    name: "Crystal Agate Classic Translucent",
-    description: "Translucent crystal agate slab with classic banding.",
-    detailedDescription: "A translucent crystal agate slab, perfect for backlit applications and luxury interiors.",
-    properties: ["Translucent", "Classic Banding", "Elegant"],
-    image: "/Images/1.3 Crystal Agate/Crystal Agate Classic Translucent.jpg",
-    category: "Agate Stone Slabs"
-  },
-  // Green Agate
-  {
-    id: "green-agate-classic",
-    name: "Green Agate Classic",
-    description: "Classic green agate slab with vibrant green tones.",
-    detailedDescription: "A beautiful green agate slab, ideal for luxury interiors and decorative surfaces. The vibrant green color and natural patterns stand out.",
+    id: "green-agate",
+    name: "Green Agate",
+    description: "Green agate slab with vibrant green tones and natural patterns.",
+    detailedDescription: "A vibrant green agate slab, ideal for luxury interiors and decorative surfaces. The rich green color and natural patterns make it striking.",
     properties: ["Vibrant Green", "Natural Patterns", "Translucent"],
-    image: "/Images/1.4 Green Agate/Green Agate Classic.jpg",
+    image: greenAgate.url,
     category: "Agate Stone Slabs"
   },
-  // Pink Agate
-  {
-    id: "pink-agate-classic",
-    name: "Pink Agate Classic",
-    description: "Classic pink agate slab with soft pink hues and natural banding.",
-    detailedDescription: "A classic pink agate slab, perfect for elegant and feminine interiors. The soft pink hues and natural banding are visually appealing.",
-    properties: ["Soft Pink", "Natural Banding", "Elegant"],
-    image: "/Images/1.5 Pink Agate/Pink Agate Classic.jpg",
-    category: "Agate Stone Slabs"
-  },
-  // Natural Agate
   {
     id: "natural-agate",
     name: "Natural Agate",
-    description: "Natural agate slab with earthy tones and unique patterns.",
-    detailedDescription: "A natural agate slab, featuring earthy tones and unique, organic patterns. Each piece is one-of-a-kind.",
+    description: "Natural agate slab with earthy tones and unique organic patterns.",
+    detailedDescription: "A natural agate slab featuring earthy tones and unique, organic patterns. Each piece is one-of-a-kind.",
     properties: ["Earthy Tones", "Unique Patterns", "Natural"],
-    image: "/Images/1.7 Natural Agate/Natural Agate.jpg",
+    image: naturalAgate.url,
     category: "Agate Stone Slabs"
   },
   {
-    id: "natural-agate-1",
-    name: "Natural Agate 1",
-    description: "Natural agate slab with unique earthy patterns.",
-    detailedDescription: "A unique natural agate slab, each piece features its own organic design.",
-    properties: ["Earthy Tones", "Unique Patterns", "Natural"],
-    image: "/Images/1.7 Natural Agate/Natural Agate1.JPG",
-    category: "Agate Stone Slabs"
-  },
-  // Moss Agate
-  {
-    id: "moss-agate-image",
+    id: "moss-agate",
     name: "Moss Agate",
     description: "Moss agate slab with moss-like inclusions and natural beauty.",
-    detailedDescription: "A moss agate slab, featuring moss-like inclusions and natural beauty. Perfect for nature-inspired interiors.",
+    detailedDescription: "A moss agate slab featuring moss-like inclusions and natural beauty. Perfect for nature-inspired interiors.",
     properties: ["Moss Inclusions", "Natural Beauty", "Unique"],
-    image: "/Images/1.8 Moss Agate/Moss Agate.jpg",
+    image: mossAgate.url,
     category: "Agate Stone Slabs"
   },
   {
-    id: "moss-agate-1",
-    name: "Moss Agate 1",
-    description: "Moss agate slab with natural inclusions.",
-    detailedDescription: "A moss agate slab, featuring beautiful moss-like inclusions for a nature-inspired look.",
-    properties: ["Moss Inclusions", "Natural Beauty", "Unique"],
-    image: "/Images/1.8 Moss Agate/Moss Agate1.jpg",
-    category: "Agate Stone Slabs"
-  },
-  // Agatona
-  {
-    id: "agatona-gold-veins",
-    name: "Agatona Gold Veins",
-    description: "Agatona slab with gold veins and striking patterns.",
+    id: "agatona",
+    name: "Agatona",
+    description: "Agatona slab with striking gold veins and natural artistry.",
     detailedDescription: "A unique agatona slab, featuring gold veins and striking natural patterns. Ideal for statement pieces.",
     properties: ["Gold Veins", "Striking Patterns", "Unique"],
-    image: "/Images/1.9 Agatona/Agatona Gold Veins.jpg",
+    image: agatona.url,
     category: "Agate Stone Slabs"
   },
-  {
-    id: "agatona-1",
-    name: "Agatona 1",
-    description: "Agatona slab with unique gold veining.",
-    detailedDescription: "A unique agatona slab, featuring gold veining and natural artistry.",
-    properties: ["Gold Veins", "Striking Patterns", "Unique"],
-    image: "/Images/1.9 Agatona/Agatona.jpg",
-    category: "Agate Stone Slabs"
-  },
-  // Brown Agate
-  {
-    id: "brown-agate",
-    name: "Brown Agate",
-    description: "Brown agate slab with warm brown tones and natural banding.",
-    detailedDescription: "A brown agate slab, offering warm brown tones and natural banding. Perfect for cozy and elegant interiors.",
-    properties: ["Warm Brown", "Natural Banding", "Cozy"],
-    image: "/Images/1.10 Brown Agate/Brown Agate.JPG",
-    category: "Agate Stone Slabs"
-  },
-  {
-    id: "brown-agate-2",
-    name: "Brown Agate 2",
-    description: "Brown agate slab with warm brown tones.",
-    detailedDescription: "A brown agate slab, offering warm brown tones and natural banding.",
-    properties: ["Warm Brown", "Natural Banding", "Cozy"],
-    image: "/Images/1.10 Brown Agate/Brown Agate (2).JPG",
-    category: "Agate Stone Slabs"
-  },
-  // Grey Agate
   {
     id: "grey-agate",
     name: "Grey Agate",
-    description: "Grey agate slab with cool grey tones and subtle patterns.",
-    detailedDescription: "A grey agate slab, featuring cool grey tones and subtle natural patterns. Great for modern and minimalist interiors.",
+    description: "Grey agate slab with cool grey tones and subtle natural patterns.",
+    detailedDescription: "A grey agate slab featuring cool grey tones and subtle natural patterns. Great for modern and minimalist interiors.",
     properties: ["Cool Grey", "Subtle Patterns", "Modern"],
-    image: "/Images/1.11 Grey Agate/Grey Agate.jpg",
+    image: greyAgate.url,
     category: "Agate Stone Slabs"
   },
-  {
-    id: "grey-agate-2",
-    name: "Grey Agate 2",
-    description: "Grey agate slab with cool grey tones and subtle patterns.",
-    detailedDescription: "A grey agate slab, featuring cool grey tones and subtle natural patterns.",
-    properties: ["Cool Grey", "Subtle Patterns", "Modern"],
-    image: "/Images/1.11 Grey Agate/Grey agate (2).jpg",
-    category: "Agate Stone Slabs"
-  },
-  // Crystal Quartz
   {
     id: "crystal-quartz",
     name: "Crystal Quartz",
     description: "Crystal quartz slab with exceptional clarity and brilliance.",
     detailedDescription: "A premium crystal quartz slab, perfect for luxury applications requiring maximum light transmission and brilliance.",
     properties: ["High Clarity", "Brilliant", "Pure", "Light Transmission"],
-    image: "/Images/2.1 Crystal Quartz/Crystal Quartz.jpg",
+    image: crystalQuartz.url,
     category: "Quartz Stone Slabs"
   },
-  // Smokey Quartz
   {
-    id: "smokey-quartz",
-    name: "Smokey Quartz",
-    description: "Smokey quartz slab with natural gray-brown transparency.",
-    detailedDescription: "Elegant smokey quartz featuring natural gray to brown coloration with excellent transparency.",
-    properties: ["Smokey Transparency", "Gray-Brown Tones", "Sophisticated", "Natural"],
-    image: "/Images/2.2 Smokey Quartz/Smokey Quartz.jpg",
+    id: "smoky-quartz",
+    name: "Smoky Quartz",
+    description: "Smoky quartz slab with natural gray-brown transparency.",
+    detailedDescription: "Elegant smoky quartz featuring natural gray to brown coloration with excellent transparency.",
+    properties: ["Smoky Transparency", "Gray-Brown Tones", "Sophisticated", "Natural"],
+    image: smokyQuartz.url,
     category: "Quartz Stone Slabs"
   },
-  // Pink Quartz
   {
     id: "pink-quartz",
     name: "Pink Quartz",
     description: "Pink quartz slab with soft pink hues and natural beauty.",
     detailedDescription: "A beautiful pink quartz slab, perfect for elegant and feminine interiors.",
     properties: ["Soft Pink", "Natural Beauty", "Elegant"],
-    image: "/Images/2.3 Pink Quartz/Pink Quartz.jpg",
+    image: pinkQuartz.url,
     category: "Quartz Stone Slabs"
   },
-  // Amethyst
   {
     id: "amethyst",
     name: "Amethyst",
     description: "Amethyst slab with royal purple hues and crystal clarity.",
     detailedDescription: "A stunning amethyst slab showcasing deep purple coloration with natural crystal formations.",
     properties: ["Royal Purple", "Crystal Formation", "Luxury", "Elegant"],
-    image: "/Images/2.4 Amethyst/Amethyst.jpg",
+    image: amethyst.url,
     category: "Quartz Stone Slabs"
   },
-  // Golden Mother of Pearl
   {
-    id: "3.1",
-    name: "Golden Mother of Pearl",
-    description: "Lustrous golden MOP with iridescent shimmer and natural patterns.",
-    detailedDescription: "Premium golden mother of pearl featuring exceptional luster and natural iridescence.",
-    properties: ["Golden Luster", "Iridescent", "Natural Patterns", "Luxurious"],
-    image: "/Images/3.1 Golden Mother of Pearl/Golden Mother of Pearl.JPG",
+    id: "mother-of-pearl",
+    name: "Mother of Pearl (MOP)",
+    description: "Lustrous mother of pearl with iridescent shimmer and natural beauty.",
+    detailedDescription: "Premium mother of pearl featuring exceptional luster and natural iridescence, perfect for luxurious accents and surfaces.",
+    properties: ["Iridescent", "Pearl Luminescence", "Natural Patterns", "Luxurious"],
+    image: motherOfPearl.url,
     category: "Mother of Pearl (MOP)"
   },
-  // White Mother of Pearl
   {
-    id: "3.3",
-    name: "White Mother of Pearl",
-    description: "Classic white MOP with pearl-like luminescence and elegance.",
-    detailedDescription: "Timeless white mother of pearl showcasing classic pearl luminescence with subtle color variations.",
-    properties: ["Pearl Luminescence", "Classic White", "Elegant", "Sophisticated"],
-    image: "/Images/3.3 White Mother of Pearl/White Mother of Pearl.jpeg",
-    category: "Mother of Pearl (MOP)"
-  },
-  // Black Obsidian
-  {
-    id: "black-obsidian-gold-veins",
-    name: "Black Obsidian Gold Veins",
-    description: "Black obsidian slab with gold veins and dramatic contrast.",
-    detailedDescription: "A dramatic black obsidian slab featuring gold veins, perfect for bold and luxurious interiors.",
-    properties: ["Gold Veins", "Dramatic Contrast", "Bold"],
-    image: "/Images/4.1 Black Obsidian/Black Obsidian Gold Veins.jpg",
+    id: "black-obsidian",
+    name: "Black Obsidian",
+    description: "Black obsidian slab with dramatic depth and elegant finish.",
+    detailedDescription: "A dramatic black obsidian slab, perfect for bold and luxurious interiors with striking contrast.",
+    properties: ["Deep Black", "Dramatic", "Elegant"],
+    image: blackObsidian.url,
     category: "Gemstone Slabs"
   },
-  // Golden Tiger Eye
   {
     id: "golden-tiger-eye",
     name: "Golden Tiger Eye",
     description: "Chatoyant golden tiger eye with silky luster and banding.",
     detailedDescription: "Premium golden tiger eye featuring the characteristic chatoyancy (cat's eye effect) with golden brown coloration and silky luster.",
     properties: ["Chatoyant", "Golden Brown", "Silky Luster", "Optical Effects"],
-    image: "/Images/4.2 Goden Tiger Eye/Golden Tiger Eye.JPG",
+    image: goldenTigerEye.url,
     category: "Gemstone Slabs"
   },
-  // Malachite
   {
     id: "malachite",
     name: "Malachite",
     description: "Rich green malachite with distinctive banding and copper richness.",
     detailedDescription: "Stunning malachite slab showcasing vibrant green coloration with characteristic banding patterns.",
     properties: ["Vibrant Green", "Copper Rich", "Banded Patterns", "Distinctive"],
-    image: "/Images/4.4 Malachite/Malachite.jpg",
+    image: malachite.url,
     category: "Gemstone Slabs"
   },
-  // Labradorite
   {
-    id: "labradorite",
-    name: "Labradorite",
-    description: "Labradorite slab with spectacular color play and iridescence.",
-    detailedDescription: "Extraordinary labradorite slab featuring the famous labradorescence - flashes of blue, green, gold, and orange that dance across the surface.",
-    properties: ["Labradorescence", "Color Play", "Mystical", "Iridescent"],
-    image: "/Images/4.5 Labradorite/IMG20231229122801.jpg",
-    category: "Gemstone Slabs"
-  },
-  // Sodalite Blue
-  {
-    id: "sodalite-blue",
-    name: "Sodalite Blue",
+    id: "sodalite",
+    name: "Sodalite",
     description: "Royal blue sodalite with white calcite veining and rich color.",
     detailedDescription: "Magnificent sodalite slab featuring deep royal blue coloration with contrasting white calcite veining.",
     properties: ["Royal Blue", "White Veining", "Rich Color", "Natural Patterns"],
-    image: "/Images/4.6 Sodalite Blue/IMG20231229122830.jpg",
+    image: sodalite.url,
     category: "Gemstone Slabs"
   },
-  // Black Petrified Wood
   {
     id: "black-petrified-wood",
     name: "Black Petrified Wood",
     description: "Black petrified wood slab with unique fossil patterns.",
-    detailedDescription: "A unique black petrified wood slab, featuring fossilized patterns and deep tones.",
+    detailedDescription: "A unique black petrified wood slab featuring fossilized patterns and deep tones.",
     properties: ["Fossil Patterns", "Deep Tones", "Unique"],
-    image: "/Images/4.7 Black Petrified wood/Black Petrified Wood.JPG",
+    image: blackPetrifiedWood.url,
     category: "Gemstone Slabs"
   },
-  // Brown Petrified Wood
   {
     id: "brown-petrified-wood",
     name: "Brown Petrified Wood",
     description: "Brown petrified wood slab with natural fossilized beauty.",
-    detailedDescription: "A brown petrified wood slab, offering natural fossilized beauty and earthy tones.",
+    detailedDescription: "A brown petrified wood slab offering natural fossilized beauty and earthy tones.",
     properties: ["Fossil Patterns", "Earthy Tones", "Natural"],
-    image: "/Images/4.8 Brown Petrified wood/Brown Petrified Retro.jpg",
+    image: brownPetrifiedWood.url,
     category: "Gemstone Slabs"
   }
 ];
