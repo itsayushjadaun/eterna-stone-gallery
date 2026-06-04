@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
+import { contactConfig } from "@/config/contact";
 
 export const Footer = () => {
   const [email, setEmail] = useState('');
@@ -36,9 +37,9 @@ export const Footer = () => {
               from around the world.
             </p>
             <div className="text-background/80 text-sm space-y-1 mb-4">
-              <p>Udaipur, Rajasthan</p>
-              <p>Email: avanexports@gmail.com</p>
-              <p>Contact: +91 9461520121</p>
+              <p>{contactConfig.address.city}</p>
+              <p>Email: {contactConfig.email}</p>
+              <p>Contact: {contactConfig.phone.display}</p>
             </div>
           </div>
 

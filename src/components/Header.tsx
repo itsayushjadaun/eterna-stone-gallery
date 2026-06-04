@@ -43,7 +43,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
   };
 
   const handleCategoryClick = (category: string) => {
-    navigate('/products');
+    navigate(`/products?category=${encodeURIComponent(category)}`);
     setIsMenuOpen(false);
   };
 
@@ -100,6 +100,28 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
       ]
     }
   ];
+  const renderProductCategory = (category: (typeof productCategories)[number]) => (
+    <div key={category.title}>
+      <button
+        onClick={() => handleCategoryClick(category.category)}
+        className="text-sm font-semibold text-foreground hover:text-primary transition-colors w-full text-left px-2 py-2 rounded mb-2"
+      >
+        {category.title}
+      </button>
+      <div className="ml-2 space-y-1">
+        {category.subcategories?.map((subcategory) => (
+          <button
+            key={subcategory}
+            onClick={() => handleCategoryClick(category.category)}
+            className="text-xs text-muted-foreground hover:text-primary transition-colors w-full text-left px-2 py-1 rounded"
+          >
+            • {subcategory}
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+
   const getTextColor = () => {
     return 'text-foreground';
   };
@@ -113,7 +135,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
       "fixed top-0 left-0 right-0 z-50 transition-all duration-300 bg-background/95 backdrop-blur-md border-b border-border shadow-sm"
     )}>
       <div className="container mx-auto px-4 lg:px-6">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between py-1 lg:py-1.5">
           {/* Logo Section */}
           <div className="flex items-center space-x-2 lg:space-x-3 flex-shrink-0">
             <button
@@ -123,7 +145,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
               <img 
                 src="/avan-logo.png"
                 alt="Avan Exports Logo" 
-                className="h-10 lg:h-12 w-auto"
+                className="h-12 lg:h-16 w-auto"
               />
               <h1 className={`text-lg lg:text-2xl font-playfair font-bold hidden sm:block ${getTextColor()}`}>
                 Avan Exports
@@ -149,32 +171,17 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
             <NavigationMenu>
               <NavigationMenuList>
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger className={`text-sm font-medium bg-transparent data-[state=open]:bg-accent data-[state=open]:text-foreground transition-colors ${getTextColor()} ${getHoverColor()}`}>
+                  <NavigationMenuTrigger className={`text-sm font-medium bg-transparent h-auto py-1.5 px-3 data-[state=open]:bg-accent data-[state=open]:text-foreground transition-colors ${getTextColor()} ${getHoverColor()}`}>
                     Products
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid w-[700px] gap-3 p-6 grid-cols-2">
-                      {productCategories.map((category) => (
-                        <div key={category.title}>
-                          <button
-                            onClick={() => handleCategoryClick(category.category)}
-                            className="text-sm font-semibold text-foreground hover:text-primary transition-colors w-full text-left px-2 py-2 rounded mb-2"
-                          >
-                            {category.title}
-                          </button>
-                          <div className="ml-2 space-y-1">
-                            {category.subcategories?.map((subcategory) => (
-                              <button
-                                key={subcategory}
-                                onClick={() => handleCategoryClick(category.category)}
-                                className="text-xs text-muted-foreground hover:text-primary transition-colors w-full text-left px-2 py-1 rounded"
-                              >
-                                • {subcategory}
-                              </button>
-                            ))}
-                          </div>
-                        </div>
-                      ))}
+                    <div className="flex w-[700px] gap-6 p-6">
+                      <div className="flex-1 flex flex-col gap-3">
+                        {productCategories.filter((_, index) => index % 2 === 0).map(renderProductCategory)}
+                      </div>
+                      <div className="flex-1 flex flex-col gap-3">
+                        {productCategories.filter((_, index) => index % 2 === 1).map(renderProductCategory)}
+                      </div>
                     </div>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
@@ -192,7 +199,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
           <div className="flex items-center space-x-3">
             <Button 
               onClick={handleViewProducts}
-              className="hidden lg:flex bg-primary text-primary-foreground hover:bg-primary/90 text-sm px-4 py-2"
+              className="hidden lg:flex bg-primary text-primary-foreground hover:bg-primary/90 text-sm px-4 py-1.5 h-auto"
             >
               View Products
             </Button>
@@ -200,7 +207,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
             {/* Mobile Menu Button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`lg:hidden p-2 transition-colors ${getTextColor()} ${getHoverColor()}`}
+              className={`lg:hidden p-1.5 transition-colors ${getTextColor()} ${getHoverColor()}`}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

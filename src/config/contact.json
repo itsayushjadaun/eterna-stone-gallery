@@ -1,0 +1,17 @@
+{
+  "businessName": "Avan Exports",
+  "email": "jadanayush3@gmail.com",
+  "whatsapp": {
+    "number": "919461520121",
+    "display": "+91 9461520121"
+  },
+  "phone": {
+    "number": "+919461520121",
+    "display": "+91 9461520121"
+  },
+  "address": {
+    "line1": "Avan Exports",
+    "city": "Udaipur, Rajasthan",
+    "country": "India"
+  }
+}

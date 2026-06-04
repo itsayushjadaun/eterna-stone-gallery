@@ -1,6 +1,7 @@
 
 import { useEffect, useRef, useState } from "react";
-import aboutImage from "@/assets/about-stones.jpeg.asset.json";
+
+const aboutImageUrl = "/lovable-uploads/WhatsApp%20Image%202026-06-03%20at%203.39.28%20PM.jpeg";
 
 export const AboutSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -75,7 +76,7 @@ export const AboutSection = () => {
           }`}>
             <div className="relative">
               <img
-                src={aboutImage.url}
+                src={aboutImageUrl}
                 alt="Premium natural stone collection"
                 className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg shadow-2xl"
                 loading="lazy"

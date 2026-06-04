@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { sendEmail } from "@/services/emailService";
+import { sendWhatsAppMessage } from "@/services/whatsappService";
+import { contactConfig } from "@/config/contact";
 
 export const ContactSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -38,26 +40,31 @@ export const ContactSection = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    
+
     try {
-      const success = await sendEmail({
+      const result = await sendEmail({
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
         message: formData.message,
-        type: 'contact'
+        type: "contact",
       });
 
-      if (success) {
+      if (result.success) {
         toast({
-          title: "Message Sent!",
-          description: "Thank you for your inquiry. We'll get back to you soon with stone specifications and pricing.",
+          title: result.method === "mailto" ? "Email app opened" : "Message sent!",
+          description:
+            result.method === "mailto"
+              ? `Your email app opened with a message to ${contactConfig.email}. Please tap Send to complete your request.`
+              : "Thank you for your inquiry. We'll get back to you soon with stone specifications and pricing.",
         });
-        setFormData({ name: '', email: '', phone: '', message: '' });
+        if (result.method === "emailjs") {
+          setFormData({ name: "", email: "", phone: "", message: "" });
+        }
       } else {
-        throw new Error('Failed to send email');
+        throw new Error("Failed to send email");
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to send message. Please try again or contact us directly.",
@@ -65,6 +72,38 @@ export const ContactSection = () => {
       });
     } finally {
       setIsLoading(false);
+    }
+  };
+
+  const handleWhatsAppSubmit = async () => {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast({
+        title: "Missing details",
+        description: "Please fill in your name, email, and message before sending via WhatsApp.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    const success = await sendWhatsAppMessage({
+      name: formData.name,
+      email: formData.email,
+      phone: formData.phone,
+      message: formData.message,
+      type: "contact",
+    });
+
+    if (success) {
+      toast({
+        title: "WhatsApp opened",
+        description: "Your request message is ready to send on WhatsApp.",
+      });
+    } else {
+      toast({
+        title: "Error",
+        description: "Failed to open WhatsApp. Please try again.",
+        variant: "destructive",
+      });
     }
   };
 
@@ -175,7 +214,17 @@ export const ContactSection = () => {
                   className="w-full bg-primary text-primary-foreground hover:bg-primary/90"
                   disabled={isLoading}
                 >
-                  {isLoading ? "Sending..." : "Request Quote"}
+                  {isLoading ? "Sending..." : "Send Request via Email"}
+                </Button>
+                <Button
+                  type="button"
+                  size="lg"
+                  variant="outline"
+                  className="w-full bg-green-600 text-white hover:bg-green-700 hover:text-white border-green-600"
+                  disabled={isLoading}
+                  onClick={handleWhatsAppSubmit}
+                >
+                  Send Request via WhatsApp
                 </Button>
               </form>
             </div>
@@ -194,18 +243,18 @@ export const ContactSection = () => {
                   <div className="bg-card rounded-lg p-6 shadow-lg">
                     <h4 className="font-semibold text-foreground mb-3">Business Address</h4>
                     <p className="text-muted-foreground">
-                      Avan Exports<br />
-                      Udaipur, Rajasthan<br />
-                      India
+                      {contactConfig.address.line1}<br />
+                      {contactConfig.address.city}<br />
+                      {contactConfig.address.country}
                     </p>
                   </div>
                   
                   <div className="bg-card rounded-lg p-6 shadow-lg">
                     <h4 className="font-semibold text-foreground mb-3">Contact Details</h4>
                     <div className="space-y-2 text-muted-foreground">
-                      <p><strong>Phone:</strong> +91 9461520121</p>
-                      <p><strong>Email:</strong> avanexports@gmail.com</p>
-                      <p><strong>WhatsApp:</strong> +91 9461520121</p>
+                      <p><strong>Phone:</strong> {contactConfig.phone.display}</p>
+                      <p><strong>Email:</strong> {contactConfig.email}</p>
+                      <p><strong>WhatsApp:</strong> {contactConfig.whatsapp.display}</p>
                     </div>
                   </div>
                   

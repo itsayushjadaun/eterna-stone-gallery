@@ -1,10 +1,14 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
 import { X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { sendWhatsAppMessage } from "@/services/whatsappService";
+import { sendEmail } from "@/services/emailService";
+import { contactConfig } from "@/config/contact";
 
 interface Stone {
   id: string;
@@ -24,38 +28,98 @@ interface StoneModalProps {
 }
 
 export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<"email" | "whatsapp" | null>(null);
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    message: `I am interested in purchasing/getting a quote for ${stone.name}. Please share pricing and availability.`,
+  });
   const { toast } = useToast();
 
-  const handleRequestQuote = async () => {
-    setIsLoading(true);
-    
-    try {
-      const success = await sendWhatsAppMessage({
-        name: 'Website Visitor',
-        email: 'visitor@website.com',
-        message: `I am interested in getting a detailed quote for this stone. Please provide pricing and availability information.`,
-        type: 'quote',
-        stoneName: stone.name,
-        stoneCategory: stone.category
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({
+      ...prev,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const validateForm = () => {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast({
+        title: "Missing details",
+        description: "Please fill in your name, email, and message before sending a request.",
+        variant: "destructive",
       });
+      return false;
+    }
+    return true;
+  };
+
+  const getRequestData = () => ({
+    name: formData.name.trim(),
+    email: formData.email.trim(),
+    phone: formData.phone.trim(),
+    message: formData.message.trim(),
+    type: "quote" as const,
+    stoneName: stone.name,
+    stoneCategory: stone.category,
+  });
+
+  const handleRequestViaWhatsApp = async () => {
+    if (!validateForm()) return;
+
+    setIsLoading("whatsapp");
+
+    try {
+      const success = await sendWhatsAppMessage(getRequestData());
 
       if (success) {
         toast({
-          title: "WhatsApp Opened!",
-          description: "WhatsApp has been opened with your quote request message.",
+          title: "WhatsApp opened",
+          description: "Your purchase request message is ready to send on WhatsApp.",
         });
       } else {
-        throw new Error('Failed to open WhatsApp');
+        throw new Error("Failed to open WhatsApp");
       }
-    } catch (error) {
+    } catch {
       toast({
         title: "Error",
         description: "Failed to open WhatsApp. Please try again.",
         variant: "destructive",
       });
     } finally {
-      setIsLoading(false);
+      setIsLoading(null);
+    }
+  };
+
+  const handleRequestViaEmail = async () => {
+    if (!validateForm()) return;
+
+    setIsLoading("email");
+
+    try {
+      const result = await sendEmail(getRequestData());
+
+      if (result.success) {
+        toast({
+          title: result.method === "mailto" ? "Email app opened" : "Request sent",
+          description:
+            result.method === "mailto"
+              ? `Your email app opened with a message to ${contactConfig.email}. Please tap Send to complete your request.`
+              : "Your purchase request has been sent by email. We'll get back to you soon.",
+        });
+      } else {
+        throw new Error("Failed to send email");
+      }
+    } catch {
+      toast({
+        title: "Error",
+        description: "Failed to send email. Please try again or use WhatsApp.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(null);
     }
   };
 
@@ -69,14 +133,14 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
           >
             <X size={20} />
           </button>
-          
+
           <div className="p-4 sm:p-6 lg:p-8">
             <DialogHeader className="mb-6">
               <DialogTitle className="text-2xl lg:text-3xl font-playfair font-bold text-left">
                 {stone.name}
               </DialogTitle>
             </DialogHeader>
-            
+
             <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
               <div className="space-y-4 lg:space-y-6">
                 <div className="relative">
@@ -86,7 +150,6 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
                     className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg"
                   />
                 </div>
-                
 
                 {stone.chakra && (
                   <div>
@@ -131,29 +194,91 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
                   <Badge variant="default" className="text-sm">{stone.category}</Badge>
                 </div>
 
-                <div className="space-y-3 pt-4">
-                  <Button 
-                    size="lg" 
-                    className="w-full bg-green-600 text-white hover:bg-green-700 text-sm lg:text-base"
-                    onClick={handleRequestQuote}
-                    disabled={isLoading}
-                  >
-                    {isLoading ? "Opening WhatsApp..." : "Request Quote via WhatsApp"}
-                  </Button>
-                  <Button 
-                    variant="outline" 
-                    size="lg" 
-                    className="w-full text-sm lg:text-base"
-                    onClick={() => {
-                      const element = document.getElementById('contact');
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                        onClose();
-                      }
-                    }}
-                  >
-                    Contact for Custom Order
-                  </Button>
+                <div className="border-t border-border pt-6 space-y-4">
+                  <h3 className="text-lg lg:text-xl font-semibold text-foreground">Request Purchase / Quote</h3>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label htmlFor="quote-name" className="block text-sm font-medium text-foreground mb-2">
+                        Full Name *
+                      </label>
+                      <Input
+                        id="quote-name"
+                        name="name"
+                        type="text"
+                        required
+                        value={formData.name}
+                        onChange={handleChange}
+                        placeholder="Your name"
+                        disabled={!!isLoading}
+                      />
+                    </div>
+                    <div>
+                      <label htmlFor="quote-email" className="block text-sm font-medium text-foreground mb-2">
+                        Email Address *
+                      </label>
+                      <Input
+                        id="quote-email"
+                        name="email"
+                        type="email"
+                        required
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="your@email.com"
+                        disabled={!!isLoading}
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label htmlFor="quote-phone" className="block text-sm font-medium text-foreground mb-2">
+                      Phone Number
+                    </label>
+                    <Input
+                      id="quote-phone"
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      placeholder="Your phone number"
+                      disabled={!!isLoading}
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="quote-message" className="block text-sm font-medium text-foreground mb-2">
+                      Message *
+                    </label>
+                    <Textarea
+                      id="quote-message"
+                      name="message"
+                      required
+                      rows={4}
+                      value={formData.message}
+                      onChange={handleChange}
+                      disabled={!!isLoading}
+                    />
+                  </div>
+
+                  <div className="space-y-3">
+                    <Button
+                      size="lg"
+                      className="w-full bg-green-600 text-white hover:bg-green-700 text-sm lg:text-base"
+                      onClick={handleRequestViaWhatsApp}
+                      disabled={!!isLoading}
+                    >
+                      {isLoading === "whatsapp" ? "Opening WhatsApp..." : "Send Request via WhatsApp"}
+                    </Button>
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="w-full text-sm lg:text-base"
+                      onClick={handleRequestViaEmail}
+                      disabled={!!isLoading}
+                    >
+                      {isLoading === "email" ? "Sending Email..." : "Send Request via Email"}
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>

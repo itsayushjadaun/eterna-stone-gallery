@@ -1,15 +1,10 @@
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
+import { contactConfig } from "@/config/contact";
 
-// EmailJS configuration - Replace these with your actual values from EmailJS dashboard
-// Visit https://dashboard.emailjs.com/admin to get these values:
-// 1. SERVICE_ID: Found in Email Services section
-// 2. TEMPLATE_ID: Found in Email Templates section  
-// 3. PUBLIC_KEY: Found in Account section under API Keys
-const SERVICE_ID = 'service_a3x3vzp'; // Replace with your EmailJS service ID
-const TEMPLATE_ID = 'template_fbfusf9'; // Replace with your EmailJS template ID
-const PUBLIC_KEY = 'TG1uWoPtKntn3uqOD'; // Replace with your EmailJS public key
+const SERVICE_ID = "service_a3x3vzp";
+const TEMPLATE_ID = "template_fbfusf9";
+const PUBLIC_KEY = "TG1uWoPtKntn3uqOD";
 
-// Initialize EmailJS
 emailjs.init(PUBLIC_KEY);
 
 export interface EmailData {
@@ -17,31 +12,82 @@ export interface EmailData {
   email: string;
   phone?: string;
   message: string;
-  type: 'quote' | 'contact';
+  type: "quote" | "contact";
+  stoneName?: string;
+  stoneCategory?: string;
 }
 
-export const sendEmail = async (data: EmailData): Promise<boolean> => {
-  try {
-    const templateParams = {
-      to_email: 'avanexports@gmail.com',
-      from_name: data.name,
-      from_email: data.email,
-      phone: data.phone || 'Not provided',
-      message: data.message,
-      request_type: data.type === 'quote' ? 'Quote Request' : 'Contact Form',
-      reply_to: data.email,
-    };
+export type EmailSendResult = {
+  success: boolean;
+  method?: "emailjs" | "mailto";
+};
 
-    const response = await emailjs.send(
-      SERVICE_ID,
-      TEMPLATE_ID,
-      templateParams
+const buildFullMessage = (data: EmailData) => {
+  if (data.type === "quote" && data.stoneName) {
+    return `Purchase/Quote Request
+
+Stone: ${data.stoneName}
+Category: ${data.stoneCategory || "Not specified"}
+
+Customer Message:
+${data.message}`;
+  }
+
+  return data.message;
+};
+
+const openMailtoFallback = (data: EmailData): boolean => {
+  try {
+    const requestType = data.type === "quote" ? "Quote Request" : "Contact Form";
+    const fullMessage = buildFullMessage(data);
+
+    const subject = encodeURIComponent(`${requestType} - ${contactConfig.businessName}`);
+    const body = encodeURIComponent(
+      `Name: ${data.name}
+Email: ${data.email}
+Phone: ${data.phone || "Not provided"}
+Request Type: ${requestType}
+
+${fullMessage}`
     );
 
-    console.log('Email sent successfully:', response);
-    return response.status === 200;
+    window.location.href = `mailto:${contactConfig.email}?subject=${subject}&body=${body}`;
+    return true;
   } catch (error) {
-    console.error('Failed to send email:', error);
+    console.error("Failed to open mailto fallback:", error);
     return false;
   }
+};
+
+export const sendEmail = async (data: EmailData): Promise<EmailSendResult> => {
+  const requestType = data.type === "quote" ? "Quote Request" : "Contact Form";
+  const fullMessage = buildFullMessage(data);
+
+  try {
+    const templateParams = {
+      to_email: contactConfig.email,
+      from_name: data.name,
+      from_email: data.email,
+      phone: data.phone || "Not provided",
+      message: fullMessage,
+      request_type: requestType,
+      reply_to: data.email,
+      stone_name: data.stoneName || "N/A",
+      stone_category: data.stoneCategory || "N/A",
+    };
+
+    const response = await emailjs.send(SERVICE_ID, TEMPLATE_ID, templateParams);
+
+    if (response.status === 200) {
+      return { success: true, method: "emailjs" };
+    }
+  } catch (error) {
+    console.error("EmailJS failed, using mailto fallback:", error);
+  }
+
+  const mailtoOpened = openMailtoFallback(data);
+  return {
+    success: mailtoOpened,
+    method: mailtoOpened ? "mailto" : undefined,
+  };
 };
