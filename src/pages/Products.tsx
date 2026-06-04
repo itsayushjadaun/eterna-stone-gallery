@@ -86,65 +86,94 @@ const Products = () => {
             </p>
           </div>
 
-          <div className="grid lg:grid-cols-4 gap-8">
-            {/* Categories Sidebar */}
-            <div className="lg:col-span-1">
-              <h2 className="text-2xl font-playfair font-semibold mb-6">Categories</h2>
-              <div className="space-y-2">
-                {Object.keys(categorizedStones).map((category) => (
-                  <div key={category}>
-                    <Button
-                      variant={selectedCategory === category ? "default" : "ghost"}
-                      className="w-full justify-start text-left p-3 h-auto"
-                      onClick={() => handleCategorySelect(category)}
-                    >
-                      <span className="text-sm font-medium">{category}</span>
-                    </Button>
-                    
-                    {/* Subcategories */}
-                    {selectedCategory === category && (
-                      <div className="ml-4 mt-2 space-y-1">
-                        {Object.keys(categorizedStones[category]).map((subcategory) => (
-                          <Button
-                            key={subcategory}
-                            variant={selectedSubcategory === subcategory ? "secondary" : "ghost"}
-                            size="sm"
-                            className="w-full justify-start text-left text-xs"
-                            onClick={() => handleSubcategorySelect(subcategory)}
-                          >
-                            {subcategory} ({categorizedStones[category][subcategory].length})
-                          </Button>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
+          {/* Category Filter Buttons */}
+          <div className="flex flex-wrap justify-center gap-3 mb-12">
+            <Button
+              variant={selectedCategory === null ? "default" : "outline"}
+              onClick={() => { setSelectedCategory(null); setSelectedSubcategory(null); }}
+              className="px-6 py-2"
+            >
+              All Categories
+            </Button>
+            {Object.keys(categorizedStones).map((category) => (
+              <Button
+                key={category}
+                variant={selectedCategory === category ? "default" : "outline"}
+                onClick={() => handleCategorySelect(category)}
+                className="px-6 py-2"
+              >
+                {category}
+              </Button>
+            ))}
+          </div>
+
+          {!selectedCategory && (
+            <div className="text-center py-16">
+              <h3 className="text-2xl font-playfair font-semibold mb-4">Select a Category</h3>
+              <p className="text-muted-foreground">Choose a category above to explore our stone collection</p>
             </div>
+          )}
 
-            {/* Products Grid */}
-            <div className="lg:col-span-3">
-              {!selectedCategory && (
-                <div className="text-center py-16">
-                  <h3 className="text-2xl font-playfair font-semibold mb-4">Select a Category</h3>
-                  <p className="text-muted-foreground">Choose a category from the sidebar to explore our stone collection</p>
+          {selectedCategory && (
+            <>
+              {/* Subcategories Grid */}
+              <div className="mb-12">
+                <h2 className="text-2xl font-playfair font-semibold mb-6 text-center">{selectedCategory}</h2>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {Object.keys(categorizedStones[selectedCategory]).map((subcategory) => {
+                    const firstStone = categorizedStones[selectedCategory][subcategory][0];
+                    return (
+                      <div key={subcategory} className="bg-card rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow cursor-pointer">
+                        <div className="relative overflow-hidden aspect-square">
+                          <img
+                            src={firstStone.image}
+                            alt={subcategory}
+                            className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                            onError={(e) => {
+                              const target = e.target as HTMLImageElement;
+                              target.src = `/placeholder.svg`;
+                            }}
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent flex flex-col justify-end p-6">
+                            <h3 className="text-2xl font-playfair font-semibold mb-2 text-white">
+                              {subcategory}
+                            </h3>
+                            <p className="text-sm text-gray-200">
+                              {categorizedStones[selectedCategory][subcategory].length} products
+                            </p>
+                          </div>
+                        </div>
+                        <div className="p-4 max-h-48 overflow-y-auto">
+                          <div className="space-y-2">
+                            {categorizedStones[selectedCategory][subcategory].map((stone) => (
+                              <Button
+                                key={stone.id}
+                                variant={selectedSubcategory === subcategory && selectedStone?.id === stone.id ? "default" : "ghost"}
+                                className="w-full justify-start text-xs py-1 px-2 h-auto"
+                                onClick={() => { 
+                                  setSelectedSubcategory(subcategory);
+                                  setSelectedStone(stone);
+                                }}
+                              >
+                                {stone.name}
+                              </Button>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
-              )}
+              </div>
 
-              {selectedCategory && !selectedSubcategory && (
-                <div className="text-center py-16">
-                  <h3 className="text-2xl font-playfair font-semibold mb-4">Select a Subcategory</h3>
-                  <p className="text-muted-foreground">Choose a subcategory to view specific stones</p>
-                </div>
-              )}
-
-              {selectedCategory && selectedSubcategory && (
+              {/* Selected Stones Grid */}
+              {selectedSubcategory && (
                 <>
                   <div className="mb-8">
-                    <h3 className="text-3xl font-playfair font-bold mb-2">
+                    <h3 className="text-3xl font-playfair font-bold mb-2 text-center">
                       {selectedSubcategory}
                     </h3>
-                    <p className="text-muted-foreground">
+                    <p className="text-muted-foreground text-center">
                       {getDisplayedStones().length} products in {selectedSubcategory}
                     </p>
                   </div>
@@ -200,8 +229,8 @@ const Products = () => {
                   </div>
                 </>
               )}
-            </div>
-          </div>
+            </>
+          )}
         </div>
       </div>
 

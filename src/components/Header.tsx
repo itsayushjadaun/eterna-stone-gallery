@@ -1,6 +1,5 @@
 
 import { useState } from "react";
-import avanLogo from "@/assets/avan-logo.png.asset.json";
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { useTheme } from "@/contexts/ThemeContext";
@@ -55,34 +54,50 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
 
   const productCategories = [
     {
-      title: "Semi Precious Stone Slabs",
-      category: "Gemstone Slabs",
-      items: ["Various semi-precious stone options"]
-    },
-    {
       title: "Agate Stone Slabs",
       category: "Agate Stone Slabs",
-      items: ["Blue Agate", "Black Agate", "Crystal Agate", "Green Agate", "Pink Agate", "Purple Agate", "Natural Agate", "Moss Agate", "Agatona"]
+      subcategories: [
+        "Blue Agate",
+        "Black Agate",
+        "Crystal Agate",
+        "Green Agate",
+        "Pink Agate",
+        "Natural Agate",
+        "Moss Agate",
+        "Agatona",
+        "Brown Agate",
+        "Grey Agate"
+      ]
     },
     {
       title: "Quartz Stone Slabs",
       category: "Quartz Stone Slabs",
-      items: ["Crystal Quartz", "Smokey Quartz", "Pink Quartz", "Amethyst"]
+      subcategories: [
+        "Crystal Quartz",
+        "Smokey Quartz",
+        "Pink Quartz",
+        "Amethyst"
+      ]
     },
     {
       title: "Mother of Pearl (MOP)",
       category: "Mother of Pearl (MOP)",
-      items: ["Golden MOP", "Green Abelone", "White MOP", "Black MOP"]
+      subcategories: [
+        "Golden MOP",
+        "White MOP"
+      ]
     },
     {
       title: "Gemstone Slabs",
       category: "Gemstone Slabs",
-      items: ["Black Obsidian", "Golden Tiger Eye", "Blue Tiger Eye", "Malachite", "Labradorite", "Sodalite Blue", "Black Petrified Wood", "Brown Petrified Wood", "Golden Pyrite", "Silver Pyrite", "Selenite", "Red Jasper"]
-    },
-    {
-      title: "Other Products",
-      category: "Non-Stone Items",
-      items: ["Washbasins", "Bath Tubs", "Other Articles"]
+      subcategories: [
+        "Obsidian",
+        "Tiger Eye",
+        "Malachite",
+        "Labradorite",
+        "Sodalite",
+        "Petrified Wood"
+      ]
     }
   ];
   const getTextColor = () => {
@@ -106,7 +121,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
               className="flex items-center space-x-2 lg:space-x-3 hover:opacity-80 transition-opacity"
             >
               <img 
-                src={avanLogo.url}
+                src="/avan-logo.png"
                 alt="Avan Exports Logo" 
                 className="h-10 lg:h-12 w-auto"
               />
@@ -138,33 +153,25 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
                     Products
                   </NavigationMenuTrigger>
                   <NavigationMenuContent>
-                    <div className="grid w-[600px] xl:w-[800px] gap-4 p-6 lg:grid-cols-2">
+                    <div className="grid w-[700px] gap-3 p-6 grid-cols-2">
                       {productCategories.map((category) => (
-                        <div key={category.title} className="space-y-2">
+                        <div key={category.title}>
                           <button
                             onClick={() => handleCategoryClick(category.category)}
-                            className="text-sm font-semibold text-foreground hover:text-primary transition-colors w-full text-left"
+                            className="text-sm font-semibold text-foreground hover:text-primary transition-colors w-full text-left px-2 py-2 rounded mb-2"
                           >
                             {category.title}
                           </button>
-                          <div className="space-y-1">
-                            {category.items.slice(0, 4).map((item) => (
+                          <div className="ml-2 space-y-1">
+                            {category.subcategories?.map((subcategory) => (
                               <button
-                                key={item}
+                                key={subcategory}
                                 onClick={() => handleCategoryClick(category.category)}
-                                className="block text-xs text-muted-foreground hover:text-primary transition-colors w-full text-left py-1"
+                                className="text-xs text-muted-foreground hover:text-primary transition-colors w-full text-left px-2 py-1 rounded"
                               >
-                                {item}
+                                • {subcategory}
                               </button>
                             ))}
-                            {category.items.length > 4 && (
-                              <button
-                                onClick={() => handleCategoryClick(category.category)}
-                                className="text-xs text-muted-foreground hover:text-primary transition-colors italic"
-                              >
-                                +{category.items.length - 4} more...
-                              </button>
-                            )}
                           </div>
                         </div>
                       ))}
@@ -220,15 +227,27 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
               {/* Mobile Product Categories */}
               <div className="px-4">
                 <p className="text-sm font-medium text-foreground mb-2">Products</p>
-                <div className="space-y-1 ml-4">
+                <div className="space-y-2 ml-2">
                   {productCategories.map((category) => (
-                    <button
-                      key={category.title}
-                      onClick={() => handleCategoryClick(category.category)}
-                      className="block w-full text-left text-sm text-muted-foreground hover:text-primary transition-colors py-1"
-                    >
-                      {category.title}
-                    </button>
+                    <div key={category.title}>
+                      <button
+                        onClick={() => handleCategoryClick(category.category)}
+                        className="block w-full text-left text-sm font-medium text-foreground hover:text-primary transition-colors py-1"
+                      >
+                        {category.title}
+                      </button>
+                      <div className="ml-2 space-y-1">
+                        {category.subcategories?.map((subcategory) => (
+                          <button
+                            key={subcategory}
+                            onClick={() => handleCategoryClick(category.category)}
+                            className="block w-full text-left text-xs text-muted-foreground hover:text-primary transition-colors py-0.5"
+                          >
+                            • {subcategory}
+                          </button>
+                        ))}
+                      </div>
+                    </div>
                   ))}
                 </div>
               </div>
