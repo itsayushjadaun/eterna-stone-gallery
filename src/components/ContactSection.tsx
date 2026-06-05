@@ -257,15 +257,6 @@ export const ContactSection = () => {
                       <p><strong>WhatsApp:</strong> {contactConfig.whatsapp.display}</p>
                     </div>
                   </div>
-                  
-                  <div className="bg-card rounded-lg p-6 shadow-lg">
-                    <h4 className="font-semibold text-foreground mb-3">Showroom Hours</h4>
-                    <div className="text-muted-foreground space-y-1">
-                      <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                      <p>Saturday: 9:00 AM - 5:00 PM</p>
-                      <p>Sunday: By Appointment Only</p>
-                    </div>
-                  </div>
                 </div>
               </div>
 

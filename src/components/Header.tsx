@@ -61,11 +61,9 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
         "Black Agate",
         "Crystal Agate",
         "Green Agate",
-        "Pink Agate",
         "Natural Agate",
         "Moss Agate",
         "Agatona",
-        "Brown Agate",
         "Grey Agate"
       ]
     },
@@ -74,7 +72,7 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
       category: "Quartz Stone Slabs",
       subcategories: [
         "Crystal Quartz",
-        "Smokey Quartz",
+        "Smoky Quartz",
         "Pink Quartz",
         "Amethyst"
       ]
@@ -83,7 +81,6 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
       title: "Mother of Pearl (MOP)",
       category: "Mother of Pearl (MOP)",
       subcategories: [
-        "Golden MOP",
         "White MOP"
       ]
     },
@@ -91,13 +88,27 @@ export const Header = ({ isScrolled = false, onCategorySelect }: HeaderProps) =>
       title: "Gemstone Slabs",
       category: "Gemstone Slabs",
       subcategories: [
-        "Obsidian",
-        "Tiger Eye",
+        "Black Obsidian",
+        "Golden Tiger Eye",
         "Malachite",
-        "Labradorite",
         "Sodalite",
         "Petrified Wood"
       ]
+    },
+    {
+      title: "Bath Tubs",
+      category: "Bath Tubs",
+      subcategories: []
+    },
+    {
+      title: "Wash Basins",
+      category: "Wash Basins",
+      subcategories: []
+    },
+    {
+      title: "Other Articles",
+      category: "Other Articles",
+      subcategories: []
     }
   ];
   const renderProductCategory = (category: (typeof productCategories)[number]) => (

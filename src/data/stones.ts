@@ -13,7 +13,7 @@ export const stones = [
     name: "Black Agate Wild",
     description: "Wild black agate slab with bold patterns and strong contrast.",
     detailedDescription: "Wild black agate slab featuring bold, organic patterns and strong contrast, ideal for feature walls and luxury surfaces.",
-    properties: ["Bold Patterns", "Strong Contrast", "Natural Artistry"],
+    properties: ["Bold Patterns", "Strong Contrast", "Natural Artistry","Translucent"],
     image: "/Shortlisted Images/1. Agate Stone slabs/2. Black Agate Wild.jpeg",
     category: "Agate Stone Slabs"
   },
@@ -40,7 +40,7 @@ export const stones = [
     name: "Natural Agate",
     description: "Natural agate slab with earthy tones and unique organic patterns.",
     detailedDescription: "A natural agate slab featuring earthy tones and unique, organic patterns. Each piece is one-of-a-kind.",
-    properties: ["Earthy Tones", "Unique Patterns", "Natural"],
+    properties: ["Earthy Tones", "Unique Patterns", "Natural","Translucent"],
     image: "/Shortlisted Images/1. Agate Stone slabs/5. Natural Agate.jpg",
     category: "Agate Stone Slabs"
   },
@@ -49,16 +49,16 @@ export const stones = [
     name: "Moss Agate",
     description: "Moss agate slab with moss-like inclusions and natural beauty.",
     detailedDescription: "A moss agate slab featuring moss-like inclusions and natural beauty. Perfect for nature-inspired interiors.",
-    properties: ["Moss Inclusions", "Natural Beauty", "Unique"],
+    properties: ["Moss Inclusions", "Natural Beauty", "Unique","Translucent"],
     image: "/Shortlisted Images/1. Agate Stone slabs/6. Moss Agate.jpg",
     category: "Agate Stone Slabs"
   },
   {
     id: "agatona",
     name: "Agatona",
-    description: "Agatona slab with striking gold veins and natural artistry.",
-    detailedDescription: "A unique agatona slab, featuring gold veins and striking natural patterns. Ideal for statement pieces.",
-    properties: ["Gold Veins", "Striking Patterns", "Unique"],
+    description: "Agatona slab with striking  and natural artistry.",
+    detailedDescription: "A unique agatona slab, featuring  and striking natural patterns. Ideal for statement pieces.",
+    properties: ["", "Striking Patterns", "Unique","Translucent"],
     image: "/Shortlisted Images/1. Agate Stone slabs/7. Agatona.jpg",
     category: "Agate Stone Slabs"
   },
@@ -67,7 +67,7 @@ export const stones = [
     name: "Grey Agate",
     description: "Grey agate slab with cool grey tones and subtle natural patterns.",
     detailedDescription: "A grey agate slab featuring cool grey tones and subtle natural patterns. Great for modern and minimalist interiors.",
-    properties: ["Cool Grey", "Subtle Patterns", "Modern"],
+    properties: ["Cool Grey", "Subtle Patterns", "Modern","Translucent"],
     image: "/Shortlisted Images/1. Agate Stone slabs/8. Grey Agate.jpg",
     category: "Agate Stone Slabs"
   },
@@ -169,5 +169,32 @@ export const stones = [
     properties: ["Fossil Patterns", "Earthy Tones", "Natural"],
     image: "/Shortlisted Images/4. Gem Stone Slabs/19. Brown Petrified Wood.jpg",
     category: "Gemstone Slabs"
+  },
+  {
+    id: "bath-tubs",
+    name: "Bath Tubs",
+    description: "Luxury natural stone bath tubs crafted for premium bathrooms.",
+    detailedDescription: "Custom-crafted bath tubs made from premium natural stone. Available in various sizes, shapes, and finishes. Contact us for specifications, pricing, and custom orders.",
+    properties: ["Custom Sizes", "Luxury Finish", "Natural Stone"],
+    image: "/placeholder.svg",
+    category: "Bath Tubs"
+  },
+  {
+    id: "wash-basins",
+    name: "Wash Basins",
+    description: "Elegant stone wash basins for luxury interiors and hospitality projects.",
+    detailedDescription: "Premium wash basins crafted from natural stone, ideal for bathrooms, hotels, and high-end residential projects. Custom designs available on request.",
+    properties: ["Elegant Design", "Durable", "Custom Options"],
+    image: "/placeholder.svg",
+    category: "Wash Basins"
+  },
+  {
+    id: "other-articles",
+    name: "Other Articles",
+    description: "Custom stone articles and specialty products for unique project needs.",
+    detailedDescription: "A range of bespoke stone articles including tabletops, countertops, decorative pieces, and specialty items. Share your requirements for a tailored solution.",
+    properties: ["Bespoke", "Versatile", "Made to Order"],
+    image: "/placeholder.svg",
+    category: "Other Articles"
   }
 ];

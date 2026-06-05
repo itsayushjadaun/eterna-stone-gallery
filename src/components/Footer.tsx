@@ -2,38 +2,57 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { contactConfig } from "@/config/contact";
 
 export const Footer = () => {
-  const [email, setEmail] = useState('');
+  const [email, setEmail] = useState("");
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const scrollToSection = (sectionId: string) => {
+    if (location.pathname !== "/") {
+      navigate("/");
+      setTimeout(() => {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 150);
+    } else {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
 
   const handleNewsletterSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Newsletter signup:', email);
-    
+    console.log("Newsletter signup:", email);
+
     toast({
       title: "Subscribed!",
       description: "Thank you for subscribing to our newsletter.",
     });
-    
-    setEmail('');
+
+    setEmail("");
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
   return (
     <footer className="bg-foreground text-background py-16">
       <div className="container mx-auto px-4">
         <div className="grid md:grid-cols-3 gap-8 mb-12">
-          {/* Brand */}
           <div>
             <h3 className="text-2xl font-playfair font-bold mb-4">Avan Exports</h3>
             <p className="text-background/80 mb-4">
-              Bringing you the finest collection of semi-precious stones and crystals 
+              Bringing you the finest collection of semi-precious stones and crystals
               from around the world.
             </p>
             <div className="text-background/80 text-sm space-y-1 mb-4">
@@ -43,37 +62,42 @@ export const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               <li>
-                <button 
-                  onClick={() => document.getElementById('home')?.scrollIntoView({ behavior: 'smooth' })}
+                <button
+                  onClick={() => scrollToSection("home")}
                   className="text-background/80 hover:text-background transition-colors"
                 >
                   Home
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+                <button
+                  onClick={() => scrollToSection("about")}
                   className="text-background/80 hover:text-background transition-colors"
                 >
                   About Us
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => document.getElementById('collection')?.scrollIntoView({ behavior: 'smooth' })}
+                <button
+                  onClick={() => {
+                    if (location.pathname !== "/products") {
+                      navigate("/products");
+                    } else {
+                      window.scrollTo({ top: 0, behavior: "smooth" });
+                    }
+                  }}
                   className="text-background/80 hover:text-background transition-colors"
                 >
-                  Collection
+                  Products
                 </button>
               </li>
               <li>
-                <button 
-                  onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}
+                <button
+                  onClick={() => scrollToSection("contact")}
                   className="text-background/80 hover:text-background transition-colors"
                 >
                   Contact
@@ -82,7 +106,6 @@ export const Footer = () => {
             </ul>
           </div>
 
-          {/* Newsletter */}
           <div>
             <h4 className="text-lg font-semibold mb-4">Stay Connected</h4>
             <p className="text-background/80 mb-4">
@@ -97,7 +120,7 @@ export const Footer = () => {
                 required
                 className="bg-background/10 border-background/20 text-background placeholder:text-background/60"
               />
-              <Button 
+              <Button
                 type="submit"
                 className="w-full bg-background text-foreground hover:bg-background/90"
               >
@@ -107,7 +130,6 @@ export const Footer = () => {
           </div>
         </div>
 
-        {/* Bottom Bar */}
         <div className="border-t border-background/20 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-background/80 mb-4 md:mb-0">
             © 2024 Avan Exports. All rights reserved.
@@ -119,7 +141,7 @@ export const Footer = () => {
             <a href="#" className="text-background/80 hover:text-background transition-colors">
               Terms of Service
             </a>
-            <button 
+            <button
               onClick={scrollToTop}
               className="text-background/80 hover:text-background transition-colors"
             >

@@ -144,11 +144,19 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
             <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
               <div className="space-y-4 lg:space-y-6">
                 <div className="relative">
-                  <img
-                    src={stone.image}
-                    alt={stone.name}
-                    className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg"
-                  />
+                  {stone.image && stone.image !== "/placeholder.svg" ? (
+                    <img
+                      src={stone.image}
+                      alt={stone.name}
+                      className="w-full h-64 sm:h-80 lg:h-96 object-cover rounded-lg"
+                    />
+                  ) : (
+                    <div className="w-full h-64 sm:h-80 lg:h-96 bg-muted rounded-lg flex items-center justify-center p-8">
+                      <p className="text-center text-2xl font-playfair font-semibold text-muted-foreground">
+                        {stone.name}
+                      </p>
+                    </div>
+                  )}
                 </div>
 
                 {stone.chakra && (
