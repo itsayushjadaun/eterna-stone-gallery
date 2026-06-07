@@ -8,7 +8,6 @@ import { X } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { sendWhatsAppMessage } from "@/services/whatsappService";
 import { sendEmail } from "@/services/emailService";
-import { contactConfig } from "@/config/contact";
 
 interface Stone {
   id: string;
@@ -99,15 +98,12 @@ export const StoneModal = ({ stone, onClose }: StoneModalProps) => {
     setIsLoading("email");
 
     try {
-      const result = await sendEmail(getRequestData());
+      const success = await sendEmail(getRequestData());
 
-      if (result.success) {
+      if (success) {
         toast({
-          title: result.method === "mailto" ? "Email app opened" : "Request sent",
-          description:
-            result.method === "mailto"
-              ? `Your email app opened with a message to ${contactConfig.email}. Please tap Send to complete your request.`
-              : "Your purchase request has been sent by email. We'll get back to you soon.",
+          title: "Request sent",
+          description: "Your purchase request has been sent by email. We'll get back to you soon.",
         });
       } else {
         throw new Error("Failed to send email");

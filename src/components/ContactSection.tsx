@@ -42,7 +42,7 @@ export const ContactSection = () => {
     setIsLoading(true);
 
     try {
-      const result = await sendEmail({
+      const success = await sendEmail({
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
@@ -50,17 +50,13 @@ export const ContactSection = () => {
         type: "contact",
       });
 
-      if (result.success) {
+      if (success) {
         toast({
-          title: result.method === "mailto" ? "Email app opened" : "Message sent!",
+          title: "Message sent!",
           description:
-            result.method === "mailto"
-              ? `Your email app opened with a message to ${contactConfig.email}. Please tap Send to complete your request.`
-              : "Thank you for your inquiry. We'll get back to you soon with stone specifications and pricing.",
+            "Thank you for your inquiry. We'll get back to you soon with stone specifications and pricing.",
         });
-        if (result.method === "emailjs") {
-          setFormData({ name: "", email: "", phone: "", message: "" });
-        }
+        setFormData({ name: "", email: "", phone: "", message: "" });
       } else {
         throw new Error("Failed to send email");
       }
