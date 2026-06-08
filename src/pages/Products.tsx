@@ -56,7 +56,7 @@ const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [selectedStone, setSelectedStone] = useState<(typeof stones)[number] | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string | null>(
-    searchParams.get("category")
+    searchParams.get("category") || "Agate Stone Slabs"
   );
   const [selectedSubcategory, setSelectedSubcategory] = useState<string | null>(null);
 
@@ -82,9 +82,6 @@ const Products = () => {
   useEffect(() => {
     if (categoryParam && categorizedStones[categoryParam]) {
       setSelectedCategory(categoryParam);
-      setSelectedSubcategory(null);
-    } else if (!categoryParam) {
-      setSelectedCategory(null);
       setSelectedSubcategory(null);
     }
   }, [categoryParam, categorizedStones]);

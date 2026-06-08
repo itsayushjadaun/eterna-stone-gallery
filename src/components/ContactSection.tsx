@@ -255,21 +255,6 @@ export const ContactSection = () => {
                   </div>
                 </div>
               </div>
-
-              <div className="bg-card rounded-lg p-6 shadow-lg">
-                <h4 className="font-semibold text-foreground mb-4">Connect With Us</h4>
-                <div className="flex space-x-4">
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    Instagram
-                  </a>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    LinkedIn
-                  </a>
-                  <a href="#" className="text-muted-foreground hover:text-primary transition-colors">
-                    Facebook
-                  </a>
-                </div>
-              </div>
             </div>
           </div>
         </div>
